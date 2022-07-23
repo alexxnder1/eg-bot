@@ -10,12 +10,14 @@ module.exports = {
         if(message.author.bot || !message.content.startsWith(process.env.PREFIX))
             return false;
 
-        const messageSplitted = message.content.split(`${process.env.PREFIX} `);
-        const cmd = cmdFiles.filter((file) => file.split('.js')[0] === messageSplitted[1]);
+        const splitted = message.content.split(`${process.env.PREFIX} `);
+        const messageSplitted = splitted[1].split(' '); 
+        
+        const cmd = cmdFiles.filter((file) => file.split('.js')[0] === messageSplitted[0]);
         if(!cmd.length)
             return message.reply("**Beep, boop, beep!** That command doesn't exists! :robot:")
 
         const fileCmd = require(`../commands/${cmd}`);
-        fileCmd.execute(message);    
+        fileCmd.execute(message, splitted);    
     }
 }

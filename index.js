@@ -15,13 +15,24 @@ const Client = new Discord.Client({
       GatewayIntentBits.GuildBans,
       GatewayIntentBits.GuildMessages,
       GatewayIntentBits.MessageContent,
+      GatewayIntentBits.GuildVoiceStates
     ],
     partials: [Discord.Partials.Channel],
 });
 
+// default
+Client.activityIndex = 0;
+
 Client.on('ready', () => {
     console.log("[BOT] Application started.");
-    Client.user.setActivity(`Use 'eg! help' for commands.`);
+    
+    setInterval(() => {
+        Client.activityIndex ++;
+        if(Client.activityIndex == 2)
+            Client.activityIndex = 0;
+
+        Client.user.setActivity((Client.activityIndex) ? ('use g! help for more commands') : ('discord.gg/easterngames'));
+    }, 30000);
 });
 
 for(const file of eventFiles)
@@ -32,4 +43,5 @@ for(const file of eventFiles)
     });
 }
 
+module.exports = Client;
 Client.login(process.env.TOKEN);
