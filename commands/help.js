@@ -14,7 +14,7 @@ module.exports = {
             fields: [
                 {
                     name: "Normal Commands",
-                    value: "`play`",
+                    value: "`play` `pause` `resume` `skip`",
                 },
 
                 {
