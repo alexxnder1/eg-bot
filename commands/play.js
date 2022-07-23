@@ -52,8 +52,17 @@ distube.on('addSong', (queue, song) => {
 })
 
 module.exports = {
-    execute(message, splitted) {
-        console.log(splitted);
+    distube,
+    execute(message, splitted, unsplitted) {
+        if(unsplitted[1] == undefined)
+            return message.reply("Invalid song / url.");
+
+        message.reply("🔥 Communicating with the server ...").then((msg) => {
+            setTimeout(() => {
+                msg.delete({ timeout: 1500 });
+            }, 1100);
+        });
+
         distube.play(message.member.voice.channel, splitted[1], { 
             message,
             textChannel: message.channel,
@@ -62,6 +71,6 @@ module.exports = {
 
         setTimeout(() => {
             message.delete({ timeout: 1000 });
-        }, 1500);
+        }, 1000);
     }
 }

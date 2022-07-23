@@ -18,6 +18,6 @@ module.exports = {
             return message.reply("**Beep, boop, beep!** That command doesn't exists! :robot:")
 
         const fileCmd = require(`../commands/${cmd}`);
-        fileCmd.execute(message, splitted);    
+        fileCmd.execute(message, splitted, messageSplitted);    
     }
 }

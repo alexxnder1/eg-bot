@@ -14,7 +14,7 @@ module.exports = {
             fields: [
                 {
                     name: "Normal Commands",
-                    value: "- coming soon -",
+                    value: "`play`",
                 },
 
                 {

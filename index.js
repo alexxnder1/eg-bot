@@ -31,7 +31,7 @@ Client.on('ready', () => {
         if(Client.activityIndex == 2)
             Client.activityIndex = 0;
 
-        Client.user.setActivity((Client.activityIndex) ? ('use g! help for more commands') : ('discord.gg/easterngames'));
+        Client.user.setActivity((Client.activityIndex) ? ('use `eg! help` for more commands') : ('discord.gg/easterngames'));
     }, 30000);
 });
 
