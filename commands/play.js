@@ -36,7 +36,7 @@ distube.on('addSong', (queue, song) => {
             
             {
                 name: "👎 Dislikes",
-                value: `${numberWithCommas(song.likes)}`,
+                value: `${numberWithCommas(song.dislikes)}`,
                 inline: true,
             }
         ],
@@ -54,6 +54,9 @@ distube.on('addSong', (queue, song) => {
 module.exports = {
     distube,
     execute(message, splitted, unsplitted) {
+        if(message.member.voice.channel == undefined)
+            return message.reply("You must be in a voice channel in order to play a track.");
+
         if(unsplitted[1] == undefined)
             return message.reply("Invalid song / url.");
 

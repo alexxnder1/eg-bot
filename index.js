@@ -44,4 +44,5 @@ for(const file of eventFiles)
 }
 
 module.exports = Client;
+require('./db/main');
 Client.login(process.env.TOKEN);
