@@ -5,9 +5,13 @@ const cmdPath = path.join(__dirname.split('\events')[0], "commands");
 const cmdFiles = fs.readdirSync(cmdPath).filter(file => file.endsWith('.js'));
 
 module.exports = {
-    execute(message)
-    {
-        if(message.author.bot || !message.content.startsWith(process.env.PREFIX))
+    execute(message) {
+        if(message.author.bot)
+            return false;
+            
+        require('../systems/level').execute(message);        
+
+        if(!message.content.startsWith(process.env.PREFIX))
             return false;
 
         const splitted = message.content.split(`${process.env.PREFIX} `);
