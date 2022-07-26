@@ -10,13 +10,26 @@ const eventFiles = fs.readdirSync(eventPath).filter(file => file.endsWith('.js')
 require('dotenv').config();
 const Client = new Discord.Client({
     intents: [
-      GatewayIntentBits.DirectMessages,
-      GatewayIntentBits.Guilds,
-      GatewayIntentBits.GuildBans,
-      GatewayIntentBits.GuildMessages,
-      GatewayIntentBits.MessageContent,
-      GatewayIntentBits.GuildVoiceStates
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildBans,
+        GatewayIntentBits.GuildEmojisAndStickers,
+        GatewayIntentBits.GuildIntegrations,
+        GatewayIntentBits.GuildWebhooks,
+        GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMessageTyping,
+        GatewayIntentBits.DirectMessages,
+        GatewayIntentBits.DirectMessageReactions,
+        GatewayIntentBits.DirectMessageTyping,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildScheduledEvents
     ],
+
+    fetchAllMembers: true,
     partials: [Discord.Partials.Channel],
 });
 
@@ -25,7 +38,7 @@ Client.activityIndex = 0;
 
 Client.on('ready', () => {
     console.log("[BOT] Application started.");
-    
+
     setInterval(() => {
         Client.activityIndex ++;
         if(Client.activityIndex == 2)

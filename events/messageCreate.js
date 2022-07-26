@@ -9,7 +9,7 @@ module.exports = {
         if(message.author.bot)
             return false;
             
-        require('../systems/level').execute(message);        
+       require('../systems/level').execute(message);        
 
         if(!message.content.startsWith(process.env.PREFIX))
             return false;

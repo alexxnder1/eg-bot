@@ -46,6 +46,6 @@ module.exports = {
     },
 
     returnLevelUpPoints(level) {
-        return (level * 20);
+        return (level * 22);
     }
 }
