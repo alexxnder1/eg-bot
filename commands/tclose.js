@@ -1,4 +1,3 @@
-const { Client } = require('discord.js');
 const ticketModel = require('../db/ticketSchema');
 
 module.exports = {
@@ -10,11 +9,12 @@ module.exports = {
          var ticketsChannel = message.guild.channels.cache.find(channel => channel.name === 'tickets-log');
          if(channel.locked)
              return message.reply("This ticket is already closed.");
- 
-         if(reason[1] == undefined || reason[1].length < 3)
+        
+         let _reason = arg[1].split('tclose')[1];
+
+         if(_reason == undefined || _reason.length < 3)
             return message.reply("Please provide a good reason.");
 
-         // TODO: query the db and search if this channel is there
          ticketModel.findOneAndUpdate({ channel_id: message.channel.id }, { $set: { solvedBy: message.author.id, reason: reason[1], active: false, solvedDate: new Date().toUTCString() } }, (err, res) => {
             if(err)
                 return console.log(err);
@@ -46,6 +46,12 @@ module.exports = {
                         inline: true
                     },
 
+                    {
+                        name: 'Messages Count',
+                        value: '`' + res.transcript.length + '`',
+                        inline: true
+                    },
+
                     //  new line
                     {
                         name: '\u200b',
@@ -63,7 +69,7 @@ module.exports = {
                     {
                         
                         name: 'Close Reason',
-                        value: '`' + reason[1] + '`',
+                        value: '`' + _reason + '`',
                         inline: true
                     },
 
@@ -77,9 +83,9 @@ module.exports = {
                 ]
             }
             
-            ticketsChannel.send({ embeds: [embed]} );
-            user.send({ embeds: [embed]} );          
-              
+            ticketsChannel.send({ embeds: [embed] });
+            ticketsChannel.send('```' + `${res.transcript.toString()}` + '```');
+
             console.log(`This ticket opened by <@${res.opener_id}> at ${res.date} was closed by <@${message.author.id}>, reason: **${reason[1]}**.`);
             
             chn.delete();

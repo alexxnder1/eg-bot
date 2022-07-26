@@ -29,6 +29,10 @@ module.exports = {
                     }).then(() => {
         
                         let channel = guild.channels.cache.find((chn) => chn.name === `ticket-${int.user.id}`);
+                        channel.setTopic(`ticket created by ${int.user.tag}`);
+
+                        let ticketsChannel = guild.channels.cache.find(chn => chn.name === 'tickets-log');
+
                         ticketModel.create({
                             opener_id: int.user.id,
                             channel_id: channel.id,
@@ -36,10 +40,41 @@ module.exports = {
                         });
             
                         console.log(`[Tickets] ${int.user.tag} made a ticket.`);
+
+                        const embed = {
+                            color: 0xfcba03,
+                            title: `✔️ Ticket Opened`,
+                            author: {
+                                name: 'Eastern Games BOT',
+                                iconURL: "https://imgur.com/1nqnLxd.png"
+                            },
+            
+                            fields: [
+                                {
+                                    name: 'Opened By',
+                                    value: '`' + int.user.tag + '`',
+                                    inline: true
+                                },
+            
+                                {
+                                    name: 'Opened Date',
+                                    value: '`' + new Date().toUTCString() + '`',
+                                    inline: true
+                                }
+                            ]
+                        }
+                        
+                        ticketsChannel.send({ embeds: [embed]} );
                     });
                 }
                 
             });
         }
+    },
+
+    transcript(message) {
+        ticketModel.updateOne({ channel_id: message.channel.id, active: true }, { $push: { transcript: `\n ${message.author.tag} [${new Date().toUTCString()}]: ${message.content}` } }, (err, res) => {
+            if(err) return console.log(err);
+        });
     }
 }

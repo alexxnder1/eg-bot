@@ -7,7 +7,8 @@ const schema = new mongoose.Schema({
     channel_id: Number,
     active: { type: Boolean, default: true },
     date: { type: Date, default: new Date().toUTCString() },
-    solvedDate: Date
+    solvedDate: Date,
+    transcript: Array
 });
 
 const ticketModel = new mongoose.model('Tickets', schema);

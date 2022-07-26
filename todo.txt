@@ -1,8 +1,0 @@
-#1
-[BOT] Application started.
-E:\eg-bot\events\messageCreate.js:18
-        const messageSplitted = splitted[1].split(' ');
-                                            ^
-
-TypeError: Cannot read properties of undefined (reading 'split')
-
