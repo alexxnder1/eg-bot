@@ -14,12 +14,17 @@ module.exports = {
             fields: [
                 {
                     name: "Normal Commands",
-                    value: "`play` `pause` `resume` `skip`",
+                    value: "`play <track>` `pause` `resume` `skip`",
+                },
+
+                {
+                    name: "Debug Commands [founders]",
+                    value: "`debugUsers - query through all members on the server and insert them again in the db.`\n`tms - sends a message with a button for open ticket`",
                 },
 
                 {
                     name: "Admin Commands",
-                    value: "- coming soon -",
+                    value: "`tclose <Reason> - close a ticket (working only in particular ticket channel)`",
                 },
                 
                 {
