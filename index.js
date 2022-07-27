@@ -39,6 +39,8 @@ Client.activityIndex = 0;
 Client.on('ready', () => {
     console.log("[BOT] Application started.");
 
+    require('./timers/muteTimer').execute();
+
     setInterval(() => {
         Client.activityIndex ++;
         if(Client.activityIndex == 2)
