@@ -1,8 +1,3 @@
--- to be fixed:
-1. ticket system -> change guild.channels.cache.find with channel id (json file)
-2. guildmemberadd se apeleaza la iesirea unuia
-3. kick ban catch err
-
 * sugestion
     suggest
     deletesuggest 
