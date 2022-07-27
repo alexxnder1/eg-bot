@@ -24,12 +24,12 @@ module.exports = {
 
                 {
                     name: "Admin Commands",
-                    value: "`* tclose <Reason> - close a ticket (working only in particular ticket channel)\n* mute <mention_user> <time [min]> <reason>\n* unmute <mention_user> <reason>`",
+                    value: "`* tclose <Reason> - close a ticket (working only in particular ticket channel)\n* ban <mention_user> <time (0=permanent)[days]> <reason>\n* unban <username>`",
                 },
                 
                 {
                     name: "Helpers Commands",
-                    value: "- coming soon -",
+                    value: "`* mute <mention_user> <time [min]> <reason>\n* unmute <mention_user> <reason>`",
                 }
             ],
 

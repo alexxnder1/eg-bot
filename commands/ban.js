@@ -20,23 +20,25 @@ module.exports = {
         const banLogChannel = message.guild.channels.cache.find((chn) => chn.name === 'ban-log');
 
         message.guild.members.fetch(mention).then((member) => {
-            banLogChannel.send(`${member.user.tag} have been banned ${(time > 0) ? ('for ' + time + ' days') : ('permanent')} from our server by ${message.author.tag}, reason: ${reason}.`);
+            member.ban().catch((err) => {
+                if(err) return message.reply('An error occurred.');
+                
+                banLogChannel.send(`${member.user.tag} have been banned ${(time > 0) ? ('for ' + time + ' days') : ('permanent')} from our server by ${message.author.tag}, reason: ${reason}.`);
             
-            // time * 86 400 000 = time from days to ms for timestamp
-            banModel.create({
-                discord_id: member.user.id,
-                name: member.user.tag,
-                reason: reason,
-                bannedBy: message.author.tag,
-                duration: (time > 0) ? new Date().getTime() + (time * 86400000) : ('permanent'),
-                permanent: (time > 0) ? false : true,
-                bannedById: message.author.id
-            });
-
-            console.log(`${member.user.tag} have been banned ${(time > 0) ? ('for ' + time + ' days') : ('permanent')} from our server by ${message.author.tag}, reason: ${reason}.`);
-            member.user.send(`You have been banned ${(time > 0) ? ('for ' + time + ' days') : ('permanent')} from our server by ${message.author.tag}, reason: ${reason}.`).then(() => {
-                member.ban();
-            });
+                // time * 86 400 000 = time from days to ms for timestamp
+                banModel.create({
+                    discord_id: member.user.id,
+                    name: member.user.tag,
+                    reason: reason,
+                    bannedBy: message.author.tag,
+                    duration: (time > 0) ? new Date().getTime() + (time * 86400000) : ('permanent'),
+                    permanent: (time > 0) ? false : true,
+                    bannedById: message.author.id
+                });
+    
+                console.log(`${member.user.tag} have been banned ${(time > 0) ? ('for ' + time + ' days') : ('permanent')} from our server by ${message.author.tag}, reason: ${reason}.`);
+                member.user.send(`You have been banned ${(time > 0) ? ('for ' + time + ' days') : ('permanent')} from our server by ${message.author.tag}, reason: ${reason}.`);    
+            });    
         }); 
     }
 }

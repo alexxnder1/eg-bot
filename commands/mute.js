@@ -8,7 +8,7 @@ module.exports = {
         if(!mention)
             return message.reply("You must mention the user that you want to ban.");
                 
-        if(!message.member.permissions.has(PermissionsBitField.Flags.BanMembers))
+        if(!message.member.permissions.has(PermissionsBitField.Flags.MuteMembers))
             return message.reply("You don't have the necessary administrator level to use this command.");
         
         let person = splitted[1];
