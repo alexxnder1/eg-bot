@@ -6,8 +6,9 @@ const fs = require('fs');
 
 const eventPath = path.join(__dirname, "events");
 const eventFiles = fs.readdirSync(eventPath).filter(file => file.endsWith('.js'));
-
+require('./db/main');
 require('dotenv').config();
+
 const Client = new Discord.Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -39,9 +40,6 @@ Client.activityIndex = 0;
 Client.on('ready', () => {
     console.log("[BOT] Application started.");
 
-    require('./timers/muteTimer').execute();
-    require('./timers/banTimer').execute();
-
     setInterval(() => {
         Client.activityIndex ++;
         if(Client.activityIndex == 2)
@@ -49,6 +47,9 @@ Client.on('ready', () => {
 
         Client.user.setActivity((Client.activityIndex) ? ('use `eg! help` for more commands') : ('discord.gg/easterngames'));
     }, 30000);
+
+    require('./timers/muteTimer').execute();
+    require('./timers/banTimer').execute();
 });
 
 for(const file of eventFiles)
@@ -60,5 +61,4 @@ for(const file of eventFiles)
 }
 
 module.exports = Client;
-require('./db/main');
 Client.login(process.env.TOKEN);
