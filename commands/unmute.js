@@ -1,4 +1,5 @@
 const muteModel = require('../db/muteSchema');
+const channels = require('../channels.json');
 
 module.exports = {
     execute(message, arg, splitted) {
@@ -33,7 +34,7 @@ module.exports = {
                 message.reply(`You unmuted <@${member.user.id}>, reason: ${reason}.`);
             });
 
-            const muteLog = message.guild.channels.cache.find((ch) => ch.name === 'mute-log');
+            const muteLog = message.guild.channels.cache.find((ch) => ch.id === channels.mute_log_channel);
             muteLog.send(`<@${message.author.id}> unmuted <@${member.user.id}>, reason: ${reason}.`);
         });
     }

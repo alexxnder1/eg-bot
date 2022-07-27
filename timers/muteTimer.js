@@ -1,5 +1,6 @@
 const ticketModel = require('../db/muteSchema');
 const Client = require('../index');
+const channels = require('../channels.json');
 
 module.exports = {
     execute() {
@@ -12,7 +13,8 @@ module.exports = {
                 if(new Date().getTime() >= res.mutedTime)
                 {
                     const guild = Client.guilds.cache.get('881118014366445578');
-                    const muteLog = guild.channels.cache.find((ch) => ch.name === 'mute-log');
+
+                    const muteLog = guild.channels.cache.find((ch) => ch.id === channels.mute_log_channel);
     
                     guild.members.fetch().then((members) => {
                         members.forEach((member) => {

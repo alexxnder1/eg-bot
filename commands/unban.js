@@ -1,6 +1,7 @@
 const { PermissionFlagsBits } = require('discord.js');
 const banModel = require('../db/banSchema');
 const Client = require('../index');
+const channels = require('../channels.json');
 
 module.exports = {
     execute(message, arg, splitted) {
@@ -24,7 +25,7 @@ module.exports = {
 
             message.channel.send(`You successfully unbanned ${name}.`);
                 
-            const banLogChannel = guild.channels.cache.find((chn) => chn.name === 'ban-log');
+            const banLogChannel = guild.channels.cache.find((chn) => chn.id === channels.ban_log_channel);
 
             // unban
             banLogChannel.send(`${name} was unbanned by ${message.author.tag}, reason: ${reason}. `);    

@@ -1,5 +1,6 @@
 const { PermissionsBitField } = require('discord.js');
 const kickModel = require('../db/kickSchema');
+const channels = require('../channels.json');
 
 module.exports = {
     execute(message, arg, splitted) {
@@ -15,7 +16,7 @@ module.exports = {
         if(!reason || reason.length < 3)
             return message.reply("* kick <mention_user> <reason>");
 
-        const kickLogChannel = message.guild.channels.cache.find((chn) => chn.name === 'kick-log');
+        const kickLogChannel = message.guild.channels.cache.find((chn) => chn.id === channels.kick_log_channel);
         if(!mention)
             return message.reply("You must mention the user that you want to kick.");
 

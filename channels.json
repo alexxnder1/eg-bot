@@ -1,5 +1,9 @@
 {
     "gate_channel": "980082274244632576",
+    "ticket_channel": "1001405952735576215",
+
     "ticket_log_channel":  "1001495022035796089",
-    "ticket_channel": "1001405952735576215"
+    "ban_log_channel": "1001845330406551662",
+    "kick_log_channel": "1001840771118411866",
+    "mute_log_channel": "1001814428058124299"
 }

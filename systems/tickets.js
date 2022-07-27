@@ -1,6 +1,7 @@
 const Client = require('../index');
 const ticketModel = require('../db/ticketSchema');
 const { ChannelType, PermissionsBitField } = require('discord.js');
+const channels = require('../channels.json');
 
 module.exports = {
     execute(int) {
@@ -31,7 +32,7 @@ module.exports = {
                         let channel = guild.channels.cache.find((chn) => chn.name === `ticket-${int.user.id}`);
                         channel.setTopic(`ticket created by ${int.user.tag}`);
 
-                        let ticketsChannel = guild.channels.cache.find(chn => chn.name === 'tickets-log');
+                        let ticketsChannel = guild.channels.cache.find(chn => chn.id === channels.ticket_log_channel);
 
                         ticketModel.create({
                             opener_id: int.user.id,

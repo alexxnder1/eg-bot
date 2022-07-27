@@ -1,5 +1,6 @@
 const { PermissionsBitField } = require('discord.js');
 const muteModel = require('../db/muteSchema');
+const channels = require('../channels.json');
 
 module.exports = {
     execute(message, arg, splitted) {
@@ -40,7 +41,7 @@ module.exports = {
                 message.reply(`You muted <@${member.user.id}> for ${time} minutes, reason: ${reason}.`);
             });
 
-            const muteLog = message.guild.channels.cache.find((ch) => ch.name === 'mute-log');
+            const muteLog = message.guild.channels.cache.find((ch) => ch.id === channels.mute_log_channel);
             muteLog.send(`<@${message.author.id}> muted <@${member.user.id}> for ${time} minutes, reason: ${reason}.`);
         });
     }
