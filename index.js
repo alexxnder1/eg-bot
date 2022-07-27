@@ -40,6 +40,7 @@ Client.on('ready', () => {
     console.log("[BOT] Application started.");
 
     require('./timers/muteTimer').execute();
+    require('./timers/banTimer').execute();
 
     setInterval(() => {
         Client.activityIndex ++;

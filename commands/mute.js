@@ -1,7 +1,16 @@
+const { PermissionsBitField } = require('discord.js');
 const muteModel = require('../db/muteSchema');
 
 module.exports = {
     execute(message, arg, splitted) {
+        const mention = message.mentions.members.first();
+
+        if(!mention)
+            return message.reply("You must mention the user that you want to ban.");
+                
+        if(!message.member.permissions.has(PermissionsBitField.Flags.BanMembers))
+            return message.reply("You don't have the necessary administrator level to use this command.");
+        
         let person = splitted[1];
         let time = splitted[2];
         let reason = splitted[3];

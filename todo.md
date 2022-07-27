@@ -1,9 +1,6 @@
 * moderation
     ban
     unban
-    kick
-    mute
-    unmute
 
 * sugestion
     suggest

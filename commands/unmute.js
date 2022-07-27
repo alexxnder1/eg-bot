@@ -2,6 +2,14 @@ const muteModel = require('../db/muteSchema');
 
 module.exports = {
     execute(message, arg, splitted) {
+        const mention = message.mentions.members.first();
+
+        if(!mention)
+            return message.reply("You must mention the user that you want to ban.");
+            
+        if(!mention.author.permissions.has(PermissionsBitField.Flags.MuteMembers))
+            return message.reply("You don't have the necessary administrator level to use this command.");
+
         let person = splitted[1];
         let reason = splitted[2];
         

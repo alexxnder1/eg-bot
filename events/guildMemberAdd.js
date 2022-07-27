@@ -1,4 +1,5 @@
 const userModel = require('../db/userSchema');
+const banModel = require('../db/banSchema');
 
 module.exports = {
     execute(member) {
@@ -20,7 +21,7 @@ module.exports = {
         });
 
         // the-gate channel
-        let channel = message.guild.channels.cache.get('1001042385721114695');
+        let channel = member.guild.channels.cache.get('1001042385721114695');
 
         const welcomeEmbed = {
             color: member.accentColor,
