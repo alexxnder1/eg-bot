@@ -1,5 +1,4 @@
 const userModel = require('../db/userSchema');
-const banModel = require('../db/banSchema');
 
 module.exports = {
     execute(member) {
@@ -22,13 +21,14 @@ module.exports = {
 
         // the-gate channel
         let channel = member.guild.channels.cache.get('1001042385721114695');
+        const guild = Client.guilds.cache.get('881118014366445578');
 
         const welcomeEmbed = {
-            color: member.accentColor,
+            color: member.user.accentColor,
             title: `Welcome 👋`,
-            description: `**${member.tag}** joined the party! 🎉`,
+            description: `**${member.user.tag}** joined the party! 🎉`,
             thumbnail: {
-                url: member.displayAvatarURL()
+                url: member.user.displayAvatarURL()
             },
 
             fields: [
@@ -39,7 +39,7 @@ module.exports = {
 
                 {
                     name: 'Account Created On',
-                    value: '`' + new Date(member.createdTimestamp).toLocaleDateString('en-US') + '`',
+                    value: '`' + new Date(member.user.createdTimestamp).toLocaleDateString('en-US') + '`',
                 }
             ],
             
