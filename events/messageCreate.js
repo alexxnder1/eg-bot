@@ -12,7 +12,7 @@ module.exports = {
        require('../systems/level').execute(message);        
        require('../systems/tickets').transcript(message);        
 
-        if(!message.content.startsWith(process.env.PREFIX))
+        if(!message.content.startsWith(`${process.env.PREFIX} `))
             return false;
 
         const splitted = message.content.split(`${process.env.PREFIX} `);

@@ -4,10 +4,7 @@ const { ChannelType, PermissionsBitField } = require('discord.js');
 const channels = require('../channels.json');
 
 module.exports = {
-    execute(int) {
-        if(!int.isButton()) return false;
-        int.deferUpdate();
-             
+    execute(int) {            
         // user pressed the 'open ticket' button.
         if(int.customId === 'ticket-button-id') {
             const guild = Client.guilds.cache.get('881118014366445578');

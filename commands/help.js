@@ -19,7 +19,7 @@ module.exports = {
 
                 {
                     name: "Debug Commands [founders]",
-                    value: "`* debugUsers - query through all members on the server and insert them again in the db.`\n`* tms - sends a message with a button for open ticket`",
+                    value: "`* debugUsers - query through all members on the server and insert them again in the db.`\n`* tms - sends a message with a button for open ticket`\n`* grm (sends on rules channel a message for verifying user)`",
                 },
 
                 {
