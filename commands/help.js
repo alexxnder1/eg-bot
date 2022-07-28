@@ -14,7 +14,7 @@ module.exports = {
             fields: [
                 {
                     name: "Normal Commands",
-                    value: "`* play <track>` `* pause` `* resume` `* skip` `* remove <track_id>` `* loop <disabled/song/queue>` `* clear (clears the queue)` `* queue`\n`* suggest <description of the suggest> (only in the suggest channel)\n* stats`",
+                    value: "`Music:\n * play <track>` \n`* pause` \n`* resume` \n`* skip` \n`* remove <track_id>` \n`* loop <disabled/song/queue>` \n`* clear (clears the queue)` \n`* queue`\n\n`Others: \n* suggest <description of the suggest> (only in the suggest channel)\n* stats \n* rank \n * top`",
                 },
 
                 {

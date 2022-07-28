@@ -4,12 +4,11 @@ const emojis = require('../emojis.json');
 
 module.exports = {
     execute(message) {
-        // exp = random[0, 100] 
         const exp = Math.floor(Math.random() * 101);
-        const money = Math.floor(Math.random() * 2542 * exp);
+        const money = Math.floor(Math.random() * 220 * exp);
         
         const shardChance = Math.floor(Math.random() * 101);
-        var shards = 1;
+        var shards = 0;
         if(shardChance <= 2) {
             shards = shardChance / 2;
             message.reply(`${emojis.shard} You just received **${shards}** shards.`);
@@ -47,7 +46,7 @@ module.exports = {
                         
                         {
                             name: `${emojis.xp}Next Level EXP`,
-                            value: '💸 `' + `${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1)))}` + '`',
+                            value: '`💸 ' + `${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1)))}` + '`',
                             inline: true
                         }
                     ]

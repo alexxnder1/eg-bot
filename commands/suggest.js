@@ -44,6 +44,8 @@ module.exports = {
                 }
             }
     
+            message.reply(`☑️ Your suggestion was successfully added, check <#${channels.suggest_channel}>.`);
+
             channel.send({ embeds: [embed] }).then((msg) => {
                 msg.react('👍');
                 msg.react('👎');

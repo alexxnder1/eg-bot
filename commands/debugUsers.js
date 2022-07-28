@@ -7,7 +7,9 @@ module.exports = {
         guild.members.fetch().then((members) => {
 
             members.forEach(member => {
-
+                if(member.user.bot)
+                    return false;
+                
                 userModel.create({
                     discord_id: member.user.id,
                     username: member.user.username,
