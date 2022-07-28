@@ -7,6 +7,9 @@ const schema = new mongoose.Schema({
     joined: String,
     created: String,
     messagesWritten: { type: Number, default: 0 },
+    experience: { type: Number, default: 0 },
+    money: { type: Number, default: 0 },
+    shards: { type: Number, default: 0 },
     level: { type: Number, default: 1 }
 });
 
