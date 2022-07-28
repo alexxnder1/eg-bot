@@ -60,16 +60,21 @@ module.exports = {
         if(unsplitted[1] == undefined)
             return message.reply("Invalid song / url.");
 
+        if(distube.getQueue(message) <= 1) 
+            return message.reply('There is not any songs that can be played.');
+
         message.reply("🔥 Communicating with the server ...").then((msg) => {
             setTimeout(() => {
                 msg.delete({ timeout: 1500 });
             }, 1100);
         });
 
-        distube.play(message.member.voice.channel, splitted[1], { 
+        distube.play(message.member.voice.channel, splitted[1].split('play ')[1], { 
             message,
             textChannel: message.channel,
             member: message.member
+        }).catch((err) => {
+            if(err) return console.log(err.errorCode);
         });
 
         setTimeout(() => {

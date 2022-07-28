@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 main().catch((err) => console.log(`[MongoDB ERROR] ${err}`));
 
