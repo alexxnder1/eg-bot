@@ -5,7 +5,7 @@ const utils = require('../utils');
 module.exports = {
     execute(message, arg, splitted) {       
         const top = [];
-        userModel.find({ }).sort({ level: -1 }).limit(10).exec((err, res) => {
+        userModel.find({ }).sort({ level: -1, experience: -1, money: -1, shards: -1 }).limit(10).exec((err, res) => {
             if(err) return console.log(err);
             res.forEach((user) => {
                 top.push({
@@ -16,7 +16,10 @@ module.exports = {
             const embed = {
                 color: 0x7ffc03,
                 title: '🏅 Top 10 members',
-                fields: top
+                fields: top,
+                thumbnail: {
+                    url: 'https://i.imgur.com/ZImaZxH.png'
+                }
             }
 
             message.reply({ embeds: [embed]});
