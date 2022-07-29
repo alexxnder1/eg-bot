@@ -1,6 +1,8 @@
 const Client = require('../index');
 const channels = require('../channels.json');
 const emojis = require('../emojis.json');
+const utils = require('../utils');
+const userModel = require('../db/userSchema');
 
 require('dotenv').config();
 module.exports = {
@@ -10,13 +12,18 @@ module.exports = {
 
         // ticket system
         require('../systems/tickets').execute(int);
-                
+
         const guild = Client.guilds.cache.get(channels.guild_id);
         const memberRole = guild.roles.cache.find((role) => role.name === 'Member');
 
         if(int.message.channel.id === channels.rules_channel) {
             int.member.roles.add(memberRole);
         }
+        
+        if(int.customId === 'coinflip-accept')
+            require('../systems/coinflip').accept(int.member.id, int.message.channelId, int.message.id);
+            
+        require('../systems/coinflip').decline(int);
 
         if(int.customId === 'help-economy') {
             const channel = guild.channels.cache.get(int.message.channelId);

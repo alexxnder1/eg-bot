@@ -1,3 +1,1 @@
-* crypto system cu mining fut
-    sell crypto 
-    stock market for crypto random
+* sa poti juca coinflip cu botu si sa si dea refill cand nu mai are bani
