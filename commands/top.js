@@ -3,9 +3,9 @@ const emojis = require('../emojis.json');
 const utils = require('../utils');
 
 module.exports = {
-    execute(message, arg, splitted) {       
+    execute(message) {       
         const top = [];
-        userModel.find({ }).sort({ level: -1, experience: -1, money: -1, shards: -1 }).limit(10).exec((err, res) => {
+        userModel.find({ bot: undefined }).sort({ level: -1, experience: -1, money: -1, shards: -1 }).limit(10).exec((err, res) => {
             if(err) return console.log(err);
             res.forEach((user) => {
                 top.push({
