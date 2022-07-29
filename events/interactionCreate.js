@@ -8,11 +8,11 @@ module.exports = {
 
         // ticket system
         require('../systems/tickets').execute(int);
-
+                
         const guild = Client.guilds.cache.get(channels.guild_id);
         const memberRole = guild.roles.cache.find((role) => role.name === 'Member');
-        
-        if(int.customId == 'react-member') {
+
+        if(int.message.channel.id === channels.rules_channel) {
             int.member.roles.add(memberRole);
         }
     }

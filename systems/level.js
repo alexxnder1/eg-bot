@@ -4,10 +4,10 @@ const emojis = require('../emojis.json');
 
 module.exports = {
     execute(message) {
-        const exp = Math.floor(Math.random() * 101);
-        const money = Math.floor(Math.random() * 220 * exp);
+        const exp = Math.floor(Math.random() * 71);
+        const money = Math.floor(Math.random() * 190 * exp);
         
-        const shardChance = Math.floor(Math.random() * 101);
+        const shardChance = Math.floor(1 + Math.random() * 101);
         var shards = 0;
         if(shardChance <= 2) {
             shards = shardChance / 2;

@@ -22,6 +22,7 @@ module.exports = {
                     .setCustomId('react-member')
                     .setLabel('Verify')
                     .setStyle(ButtonStyle.Primary)
+                    .setDisabled(false)
             )
         
 

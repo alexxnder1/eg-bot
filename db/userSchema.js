@@ -6,6 +6,7 @@ const schema = new mongoose.Schema({
     tag: String,
     joined: String,
     created: String,
+    dailyReward: { type: Number, default: 0 },
     messagesWritten: { type: Number, default: 0 },
     experience: { type: Number, default: 0 },
     money: { type: Number, default: 0 },

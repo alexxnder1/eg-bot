@@ -4,23 +4,7 @@ const Client = require('../index');
 module.exports = {
     execute(member) {
         console.log(`[Join] ${member.user.tag} joined the party.`);
-
-        userModel.findOne({ discord_id: member.user.id }, (err, res) => {
-            if(err)
-                return console.log(err);
-
-            if(!res) {
-                userModel.create({
-                    discord_id: member.user.id,
-                    username: member.user.username,
-                    tag: member.user.tag,
-                    joined: new Date(member.user.createdTimestamp).toLocaleDateString('en-US'),
-                    created: member.user.createdAt
-                });
-            }
-        });
-
-        // the-gate channel
+         // the-gate channel
         let channel = member.guild.channels.cache.get('980082274244632576');
         const guild = Client.guilds.cache.get('881118014366445578');
 
@@ -52,5 +36,20 @@ module.exports = {
         }
 
         channel.send({ embeds: [welcomeEmbed] });
+        
+        userModel.findOne({ discord_id: member.user.id }, (err, res) => {
+            if(err)
+                return console.log(err);
+
+            if(!res) {
+                userModel.create({
+                    discord_id: member.user.id,
+                    username: member.user.username,
+                    tag: member.user.tag,
+                    joined: new Date(member.user.createdTimestamp).toLocaleDateString('en-US'),
+                    created: member.user.createdAt
+                });
+            }
+        });
     }
 }
