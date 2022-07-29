@@ -5,7 +5,7 @@ module.exports = {
         const field = [
             {
                 name: "Normal Commands",
-                value: "`Economy: \n* stats - shows your account statistics (money, exp, etc) \n* rank - reveals your rank \n* top - shows you the server classification of members in the server sorted by level, money, exp & shards \n\nUseful: \n* suggest <description of the suggest> (only in the suggest channel) \n\nGambling: \n* coinflip <mention_user> <$bet> \n* coinflip accept \n* coinflip cancel \n\nMusic:\n * play <track>` \n`* pause` \n`* resume` \n`* skip` \n`* remove <track_id>` \n`* loop <disabled/song/queue>` \n`* clear (clears the queue)` \n`* queue`\n\n",
+                value: "`Economy: \n* stats - shows your account statistics (money, exp, etc) \n* rank - reveals your rank \n* top - shows you the server classification of members in the server sorted by level, money, exp & shards \n\nUseful: \n* suggest <description of the suggest> (only in the suggest channel) \n\nGambling: \n* coinflip <mention [eg-bot/user]> <$bet> \n\nMusic:\n * play <track>` \n`* pause` \n`* resume` \n`* skip` \n`* remove <track_id>` \n`* loop <disabled/song/queue>` \n`* clear (clears the queue)` \n`* queue`\n\n",
             }
         ];
 
