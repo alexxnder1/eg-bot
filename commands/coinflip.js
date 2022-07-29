@@ -148,6 +148,9 @@ module.exports = {
                 if(!message.mentions.users.first())
                     return message.reply('You must mention the user you want to challange');
 
+                if(coinflips.find((ch) => ch.target_id == message.mentions.users.first()))
+                    return message.reply(`This user is already challanged by <@${ch.challanger_id}>.`);
+
                 const guild = Client.guilds.cache.get(channels.guild_id);
                 guild.members.fetch(message.mentions.users.first()).then((member) => {
                     const bet = parseInt(splitted[2]);
