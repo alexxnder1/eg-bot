@@ -11,7 +11,8 @@ const schema = new mongoose.Schema({
     experience: { type: Number, default: 0 },
     money: { type: Number, default: 0 },
     shards: { type: Number, default: 0 },
-    level: { type: Number, default: 1 }
+    level: { type: Number, default: 1 },
+    bot: { type: Boolean, default: false }
 });
 
 const userModel = new mongoose.model("Users", schema);
