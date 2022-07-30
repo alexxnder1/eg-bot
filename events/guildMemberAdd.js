@@ -1,8 +1,10 @@
 const userModel = require('../db/userSchema');
 const Client = require('../index');
+const channels = require('../channels.json');
 
 module.exports = {
     execute(member) {
+        member.roles.add(channels.not_verified_role_id);
         console.log(`[Join] ${member.user.tag} joined the party.`);
          // the-gate channel
         let channel = member.guild.channels.cache.get('980082274244632576');
