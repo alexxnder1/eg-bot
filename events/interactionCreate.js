@@ -1,8 +1,6 @@
 const Client = require('../index');
 const channels = require('../channels.json');
 const emojis = require('../emojis.json');
-const utils = require('../utils');
-const userModel = require('../db/userSchema');
 
 require('dotenv').config();
 module.exports = {
@@ -24,6 +22,7 @@ module.exports = {
             require('../systems/coinflip').accept(int.member.id, int.message.channelId, int.message.id);
             
         require('../systems/coinflip').decline(int);
+        require('../systems/suggest').interaction(int);
 
         if(int.customId === 'help-economy') {
             const channel = guild.channels.cache.get(int.message.channelId);

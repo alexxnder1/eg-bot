@@ -16,13 +16,15 @@ module.exports = {
         // challange
         if(coinflips.find((ch) => ch.challanger_id == message.author.id))
             return message.reply("You already have a coinflip challange active. Disable it by typing " + process.env.PREFIX + " coinflip cancel.");
+    
+        if(coinflips.find((ch) => ch.target_id == message.author.id))
+            return message.reply(`Somebody already challenged you. Please decline his challenge.`);
 
         if(!message.mentions.users.first())
             return message.reply('You must mention the user you want to challange');
 
         if(coinflips.find((ch) => ch.target_id == message.mentions.users.first()))
             return message.reply(`This user is already challanged by <@${ch.challanger_id}>.`);
-
 
         const guild = Client.guilds.cache.get(channels.guild_id);
         guild.members.fetch(message.mentions.users.first()).then((member) => {

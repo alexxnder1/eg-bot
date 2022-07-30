@@ -1,7 +1,30 @@
 const channels = require('../channels.json');
 const suggestModel = require('../db/suggestSchema');
 
+const { ModalBuilder,TextInputBuilder, TextInputStyle } = require('discord.js'); 
+
 module.exports = {
+    interaction(int) {
+        if(int.customId !== 'suggest-create')
+            return false;
+    
+            const modal = new ModalBuilder() // We create a Modal
+            .setCustomId('verification-modal')
+            .setTitle('Verify yourself')
+            .addComponents([
+              new TextInputBuilder()
+                .setCustomId('verification-input')
+                .setLabel('Answer')
+                .setStyle(TextInputStyle.Short)
+                .setMinLength(4)
+                .setMaxLength(12)
+                .setPlaceholder('ABCDEF')
+                .setRequired(true),
+            ]);
+    
+          int.showModal(modal);
+    },
+
     reactionAdd(reaction) {
         if(reaction.message.channel.id !== channels.suggest_channel) 
             return false;

@@ -56,7 +56,7 @@ Client.on('ready', () => {
 
 for(const file of eventFiles)
 {
-    Client.on(file.split('.js')[0], (arg) => {
+    Client.on(file.split('.js')[0], async arg => {
         const event = require(`./events/${file}`);
         event.execute(arg);
     });

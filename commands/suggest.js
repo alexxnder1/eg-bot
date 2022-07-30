@@ -2,12 +2,14 @@ const channels = require('../channels.json');
 const Client = require('../index');
 const suggestModel = require('../db/suggestSchema');
 
+require('dotenv').config()
+
 module.exports = {
-    execute(message, arg, splitted) {       
-        let text = arg[1].split('suggest')[1];   
+    execute(message) {       
+        let text = message.content.slice(process.env.PREFIX.length + 9);   
 
         if(!text || text.length < 7)
-            return message.reply('You must type a good and real reason.');
+            return message.reply('You must type a good and real reason.').then((msg) => {setTimeout(() => msg.delete({ timeout: 1000 }) , 4000); });
 
         const guild = Client.guilds.cache.get(channels.guild_id);
         const channel = guild.channels.cache.find((chn) => chn.id === channels.suggest_channel);
@@ -44,8 +46,6 @@ module.exports = {
                 }
             }
     
-            message.reply(`☑️ Your suggestion was successfully added, check <#${channels.suggest_channel}>.`);
-
             channel.send({ embeds: [embed] }).then((msg) => {
                 msg.react('👍');
                 msg.react('👎');
@@ -59,6 +59,10 @@ module.exports = {
                     NoVotes: 1
                 });
             }); 
+
+            setTimeout(() => {
+                message.delete();
+            }, 4000);
         });
     }
 };
