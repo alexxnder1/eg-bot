@@ -26,7 +26,12 @@ module.exports = {
 
         const guild = Client.guilds.cache.get(channels.guild_id);
         guild.members.fetch(message.mentions.users.first()).then((member) => {
-            const bet = parseFloat(splitted[2]);
+            var bet = splitted[2];
+
+            if(bet.includes(",") || bet.includes("."))
+                return message.reply("Please try to don't use comma or dot in your bet.");
+
+            bet = parseInt(bet);
 
             if(!bet)
                 return message.reply("Invalid bet amount.");
