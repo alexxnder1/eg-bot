@@ -13,6 +13,7 @@ module.exports = {
 
         const guild = Client.guilds.cache.get(channels.guild_id);
         const channel = guild.channels.cache.find((chn) => chn.id === channels.suggest_channel);
+        console.log(channel);
 
         suggestModel.count({}, (err, res) => {
             if(err) return console.log(err);
