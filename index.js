@@ -33,7 +33,7 @@ const Client = new Discord.Client({
     ],
 
     fetchAllMembers: true,
-    partials: [Discord.Partials.Channel, Discord.Partials.Reaction, Discord.Partials.Message, Discord.Partials.User],
+    partials: [Discord.Partials.Channel, Discord.Partials.Reaction, Discord.Partials.Message, Discord.Partials.User, Discord.Partials.GuildMember],
 });
 
 // default

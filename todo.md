@@ -1,1 +1,0 @@
-* sa poti juca coinflip cu botu si sa si dea refill cand nu mai are bani
