@@ -1,5 +1,6 @@
 const userModel = require('../db/userSchema');
 const emojis = require('../emojis.json');
+const utils = require('../utils.js');
 
 module.exports = {
     execute(message) {
@@ -22,17 +23,17 @@ module.exports = {
                     description: `These are the earnings for <@${message.author.id}>.`,
                     fields: [
                         {
-                            name: `EXP ${emojis.xp}`,
+                            name: `EXP ${utils.numberWithCommas(emojis.xp)}`,
                             value: `+${exp}`,
                             inline: true,
                         },
                         {
-                            name: `Money ${emojis.money}`,
+                            name: `Money ${utils.numberWithCommas(emojis.money)}`,
                             value: `+$${money}`,
                             inline: true,
                         },
                         {
-                            name: `Shards ${emojis.shard}`,
+                            name: `Shards ${utils.numberWithCommas(emojis.shard)}`,
                             value: `+${shards}`,
                             inline: true,
                         }
