@@ -67,7 +67,7 @@ module.exports = {
                         }
 
                         else {
-                            message.reply(`<@${member.user.id}> doesn't have that amount of money!`);
+                            return message.reply(`<@${member.user.id}> doesn't have that amount of money!`);
                         }
                     }
 
