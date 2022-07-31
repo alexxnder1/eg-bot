@@ -11,8 +11,8 @@ require('dotenv').config()
 var coinflips = [];
 
 module.exports = {
+    coinflips,
     execute(message, arg, splitted) {
-        // challange
         if(coinflips.find((ch) => ch.challanger_id == message.author.id))
             return message.reply("You already have a coinflip challange active. Disable it by typing " + process.env.PREFIX + " coinflip cancel.");
     
@@ -82,6 +82,13 @@ module.exports = {
                             new ButtonBuilder()
                                 .setCustomId('coinflip-decline')
                                 .setLabel(`Decline [${member.user.tag}]`)
+                                .setStyle(ButtonStyle.Danger)
+
+                            ,
+
+                            new ButtonBuilder()
+                                .setCustomId('coinflip-cancel')
+                                .setLabel(`Cancel [${message.author.tag}]`)
                                 .setStyle(ButtonStyle.Danger)
                         )
 
