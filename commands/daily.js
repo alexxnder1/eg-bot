@@ -14,7 +14,7 @@ module.exports = {
             // first daily | note: 86 400 000 = 24 hours -> ms            
             if(!res.dailyReward || (new Date().getTime() - res.dailyReward) >= 86400000) {
                 var exp = res.level * 127;
-                var money = res.level * 156 * exp;
+                var money = res.level * 455;
                 var shards = Math.floor(1 + Math.random() * 5);
 
                 const embed = {
@@ -23,18 +23,18 @@ module.exports = {
                     description: `These are the earnings for <@${message.author.id}>.`,
                     fields: [
                         {
-                            name: `EXP ${utils.numberWithCommas(emojis.xp)}`,
-                            value: `+${exp}`,
+                            name: `EXP ${emojis.xp}`,
+                            value: `+${utils.numberWithCommas(exp)}`,
                             inline: true,
                         },
                         {
-                            name: `Money ${utils.numberWithCommas(emojis.money)}`,
-                            value: `+$${money}`,
+                            name: `Money ${emojis.money}`,
+                            value: `+$${utils.numberWithCommas(money)}`,
                             inline: true,
                         },
                         {
-                            name: `Shards ${utils.numberWithCommas(emojis.shard)}`,
-                            value: `+${shards}`,
+                            name: `Shards ${emojis.shard}`,
+                            value: `+${utils.numberWithCommas(shards)}`,
                             inline: true,
                         }
                     ],

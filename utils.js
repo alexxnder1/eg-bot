@@ -3,7 +3,7 @@ module.exports = {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     
-    returnLevelUpPoints(level) {
-        return (level * 2502);
+    returnLevelUpPoints(level, exp) {
+        return parseInt(level * 3566);
     }
 }
