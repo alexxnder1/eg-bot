@@ -26,7 +26,7 @@ module.exports = {
 
                 {
                     name: 'Account Created On',
-                    value: '`' + new Date(member.user.createdTimestamp).toLocaleDateString('en-US') + '`',
+                    value: '`' + new Date(member.user.createdTimestamp).toUTCString() + '`',
                 }
             ],
             
@@ -49,9 +49,12 @@ module.exports = {
                     username: member.user.username,
                     tag: member.user.tag,
                     joined: new Date().toUTCString(),
-                    created: new Date(member.user.createdTimestamp).toLocaleDateString('en-US')
+                    created: new Date(member.user.createdTimestamp).toUTCString()
                 });
             }
+            
+            const levelRole = guild.roles.cache.find(role => role.name === `Level ${res.level}`);
+            member.roles.add(levelRole);
         });
     }
 }

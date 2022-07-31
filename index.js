@@ -52,6 +52,8 @@ Client.on('ready', () => {
 
     require('./timers/muteTimer').execute();
     require('./timers/banTimer').execute();
+
+    // require('./systems/level').generate_roles();
 });
 
 for(const file of eventFiles)

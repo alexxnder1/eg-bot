@@ -7,7 +7,7 @@ module.exports = {
         const mention = message.mentions.members.first();
 
         if(!mention)
-            return message.reply("You must mention the user that you want to ban.");
+            return message.reply("You must mention the user that you want to mute.");
                 
         if(!message.member.permissions.has(PermissionsBitField.Flags.MuteMembers))
             return message.reply("You don't have the necessary administrator level to use this command.");

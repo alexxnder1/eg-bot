@@ -154,5 +154,23 @@ module.exports = {
         const challange = coinflips.find((coin) => (received) ? coin.target_id : (coin.challanger_id) === message.author.id);
         channel.send((challange.challanger_id == message.author.id) ? `You just cancelled coinflip invitation to <@${challange.target_id}>.` : `You cancelled <@${challange.challanger_id}>'s invitation to coinflip.`);
         coinflips.splice(coinflips.indexOf(challange));
+    },
+
+    cancel(int) {
+        if(int.customId !== 'coinflip-cancel') 
+            return false;
+
+        const guild = Client.guilds.cache.get(channels.guild_id);
+        
+        const channel = guild.channels.cache.get(int.message.channelId);
+        const message = channel.messages.cache.find((msg) => msg.id === int.message.id);
+
+        const received = coinflips.find((ch) => ch.challanger_id == int.member.id);
+        if(!received)
+            return channel.send(`<@${int.member.id}> you can not cancel because it's not your challange.`);
+
+        message.edit({components: []});
+        channel.send(`<@${int.member.id}> canceled coinflip invitation for <@${received.target_id}>.`);
+        coinflips.splice(coinflips.indexOf(received));
     }
 }
