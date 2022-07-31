@@ -48,8 +48,8 @@ module.exports = {
                     discord_id: member.user.id,
                     username: member.user.username,
                     tag: member.user.tag,
-                    joined: new Date(member.user.createdTimestamp).toLocaleDateString('en-US'),
-                    created: member.user.createdAt
+                    joined: new Date().toUTCString(),
+                    created: new Date(member.user.createdTimestamp).toLocaleDateString('en-US')
                 });
             }
         });

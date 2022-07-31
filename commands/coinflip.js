@@ -11,7 +11,6 @@ require('dotenv').config()
 var coinflips = [];
 
 module.exports = {
-    coinflips,
     execute(message, arg, splitted) {
         // challange
         if(coinflips.find((ch) => ch.challanger_id == message.author.id))

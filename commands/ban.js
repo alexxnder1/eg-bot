@@ -1,4 +1,4 @@
-const { PermissionsBitField } = require('discord.js');
+const { PermissionsBitField, } = require('discord.js');
 const banModel = require('../db/banSchema');
 const channels = require('../channels.json');
 

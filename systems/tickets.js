@@ -22,10 +22,14 @@ module.exports = {
                             {
                                 id: int.guild.id,
                                 deny: [PermissionsBitField.Flags.ViewChannel],
+                            },
+                            {
+                                id: int.user.id,
+                                allow: [PermissionsBitField.Flags.ViewChannel]
                             }
                         ]
                     }).then(() => {
-        
+
                         let channel = guild.channels.cache.find((chn) => chn.name === `ticket-${int.user.id}`);
                         channel.setTopic(`ticket created by ${int.user.tag}`);
 

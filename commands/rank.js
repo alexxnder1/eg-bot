@@ -1,6 +1,4 @@
 const userModel = require('../db/userSchema');
-const emojis = require('../emojis.json');
-const utils = require('../utils');
 
 module.exports = {
     execute(message, arg, splitted) {       

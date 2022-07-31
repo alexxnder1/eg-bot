@@ -4,7 +4,6 @@ const emojis = require('../emojis.json');
 
 module.exports = {
     execute(message) {
-
         userSchema.findOne({ discord_id: message.author.id }, (err, res) => {
             if(err) return console.log(err);
 
