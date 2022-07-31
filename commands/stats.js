@@ -20,7 +20,7 @@ module.exports = {
                 fields: [
                     {
                         name: `Level ${res.level} ${emojis.xp} `,
-                        value: `(${utils.numberWithCommas(res.experience)}/${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1), res.experience))} EXP)`,
+                        value: `(${utils.numberWithCommas(res.experience)}/${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1), res.messagesWritten))} EXP)`,
                         inline: false
                     },
 

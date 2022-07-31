@@ -13,8 +13,8 @@ module.exports = {
 
             // first daily | note: 86 400 000 = 24 hours -> ms            
             if(!res.dailyReward || (new Date().getTime() - res.dailyReward) >= 86400000) {
-                var exp = res.level * 127;
-                var money = res.level * 455;
+                var exp = res.level * Math.floor(120 + Math.random() * 5);
+                var money = res.level * Math.floor(3500 + Math.random() * 3620);
                 var shards = Math.floor(1 + Math.random() * 5);
 
                 const embed = {

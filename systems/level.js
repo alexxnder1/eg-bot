@@ -64,19 +64,15 @@ module.exports = {
                 if(err) return console.log(err);
             });
 
-            if(res.experience >= utils.returnLevelUpPoints(res.level, res.experience)) {
+            if(res.experience >= utils.returnLevelUpPoints(res.level, res.messagesWritten)) {
                 const guild = Client.guilds.cache.get(channels.guild_id);
-                
-                const newRole = guild.roles.cache.find(role => role.name === `Level ${res.level + 1}`);
-                const oldRole = guild.roles.cache.find(role => role.name === `Level ${res.level}`);
-
-                message.member.roles.remove(oldRole);
-                message.member.roles.add(newRole);
 
                 model.updateOne({ discord_id: message.author.id }, { $inc: { level: 1 }})
                 .exec((err) => {
                     if(err) return console.log(err);
                 });
+
+                utils.setRoleForLevel(message, res.level);
 
                 const level = {
                     color: 0x4287f5,
@@ -95,7 +91,7 @@ module.exports = {
                         
                         {
                             name: `${emojis.xp}Next Level EXP`,
-                            value: '`💸 ' + `${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1), res.experience))}` + '`',
+                            value: '`💸 ' + `${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1), res.messagesWritten))}` + '`',
                             inline: true
                         }
                     ]
