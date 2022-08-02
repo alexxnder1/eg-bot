@@ -10,6 +10,35 @@ module.exports = {
             if(!res) 
                 return message.reply('An error occurred with your database account. Please try again later.');
         
+            var statsFields = [
+                {
+                    name: `Level ${res.level} ${emojis.xp} `,
+                    value: `(${utils.numberWithCommas(res.experience)}/${utils.numberWithCommas(res.nextExperience)} EXP)`,
+                    inline: false
+                },
+
+                
+                {
+                    name: `Money ${emojis.money}`,
+                    value: `$${utils.numberWithCommas(res.money)}`,
+                    inline: false
+                },
+
+                {
+                
+                    name: `Shards ${emojis.shard}`,
+                    value: `${utils.numberWithCommas(res.shards)}`,
+                    inline: false
+                },
+                
+                {
+                
+                    name: `Messages ${emojis.message}`,
+                    value: `${utils.numberWithCommas(res.messagesWritten)}`,
+                    inline: false
+                }
+            ]
+
             const embed = {
                 color: 0x3236a8,
                 title: `📊 ${message.author.tag}'s account statistics`,
@@ -17,34 +46,7 @@ module.exports = {
                     url: message.author.displayAvatarURL()
                 },
         
-                fields: [
-                    {
-                        name: `Level ${res.level} ${emojis.xp} `,
-                        value: `(${utils.numberWithCommas(res.experience)}/${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1), res.messagesWritten))} EXP)`,
-                        inline: false
-                    },
-
-                    
-                    {
-                        name: `Money ${emojis.money}`,
-                        value: `$${utils.numberWithCommas(res.money)}`,
-                        inline: false
-                    },
-
-                    {
-                    
-                        name: `Shards ${emojis.shard}`,
-                        value: `${utils.numberWithCommas(res.shards)}`,
-                        inline: false
-                    },
-                    
-                    {
-                    
-                        name: `Messages ${emojis.message}`,
-                        value: `${utils.numberWithCommas(res.messagesWritten)}`,
-                        inline: false
-                    }
-                ],
+                fields: statsFields, 
 
                 footer: {
                     text: 'Eastern Games BOT',

@@ -1,7 +1,7 @@
-const Client = require('../index');
-const ticketModel = require('../db/ticketSchema');
+const Client = require('../../index');
+const ticketModel = require('../../db/ticketSchema');
 const { ChannelType, PermissionsBitField } = require('discord.js');
-const channels = require('../channels.json');
+const channels = require('../../channels.json');
 
 module.exports = {
     execute(int) {            

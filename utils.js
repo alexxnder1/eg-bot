@@ -6,8 +6,8 @@ module.exports = {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     
-    returnLevelUpPoints(level, messages) {
-        return parseInt(level * 135 * (messages / 4));
+    returnLevelUpPoints(level) {
+        return parseInt(level * 182 * (Math.floor(Math.random() * 666)));
     },
 
     setRoleForLevel(message, level) {
@@ -15,6 +15,7 @@ module.exports = {
 
         for(var i = 1; i<=100; i++) {
             if(message.member.roles.cache.some(role => role.name === `Level ${i}`) && i !== level) {
+                console.log(i);
                 const role = guild.roles.cache.find((role) => role.name === `Level ${i}`);
                 message.member.roles.remove(role);
             }

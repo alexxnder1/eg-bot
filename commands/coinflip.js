@@ -107,7 +107,7 @@ module.exports = {
                     });
 
                     if(member.user.bot) 
-                        require('../systems/coinflip').accept(channels.bot_id, message.channel.id, message.id);
+                        require('./interactions/coinflip').accept(channels.bot_id, message.channel.id, message.id);
                 });
             });
         });

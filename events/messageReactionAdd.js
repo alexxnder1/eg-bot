@@ -1,5 +1,5 @@
 module.exports = {
     execute(reaction, user) {
-        require('../systems/suggest').reactionAdd(reaction); 
+        require('./interactions/suggest').reactionAdd(reaction); 
     }
 }

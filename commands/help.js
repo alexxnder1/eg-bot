@@ -14,7 +14,7 @@ module.exports = {
             field.push(
                 {
                     name: "Debug Commands [administrators]",
-                    value: "`* debugUsers - query through all members on the server and insert them again in the db.`\n`* info <ticket/verify> (sends a message with a button for open ticket/verify user)`",
+                    value: "`* debug <users> - query through all members on the server and insert them again in the db.`\n`* info <ticket/verify> (sends a message with a button for open ticket/verify user)`",
                 },
             );
         }

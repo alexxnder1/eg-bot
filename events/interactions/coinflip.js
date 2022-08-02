@@ -1,10 +1,10 @@
-const Client = require('../index');
-const channels = require('../channels.json');
-const emojis = require('../emojis.json');
-const utils = require('../utils');
-const userModel = require('../db/userSchema');
+const Client = require('../../index');
+const channels = require('../../channels.json');
+const emojis = require('../../emojis.json');
+const utils = require('../../utils');
+const userModel = require('../../db/userSchema');
 
-const { coinflips } = require('../commands/coinflip');
+const { coinflips } = require('../../commands/coinflip');
 
 module.exports = {
     accept(memberid, channelid, messageid) {

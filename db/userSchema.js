@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
     dailyReward: { type: Number, default: 0 },
     messagesWritten: { type: Number, default: 0 },
     experience: { type: Number, default: 0 },
+    nextExperience: { type: Number },
     money: { type: Number, default: 0 },
     shards: { type: Number, default: 0 },
     level: { type: Number, default: 1 },

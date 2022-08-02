@@ -36,7 +36,6 @@ module.exports = {
                     if(!res) return false;
                     if(!member.roles.cache.some(role => role.name === `Level ${res.level}`)) {
                         var levelRole = guild.roles.cache.find(role => role.name === `Level ${res.level}`);
-
                         member.roles.add(levelRole);
                     }
                 });
@@ -55,24 +54,23 @@ module.exports = {
         model.findOne({ discord_id: message.author.id }, (err, res) => {
             if(err)
                 return console.log(err);
-                
+
             const exp = Math.floor(Math.random() * 150) * (res.level / 2);
             const money = Math.floor(Math.random() * 525 * res.level);
                 
-            model.findOneAndUpdate({ discord_id: message.author.id }, { $inc: { messagesWritten: 1, experience: parseInt(exp), money: money, shards: shards } })
+            const nextEXP = (!res.nextExperience) ? (utils.returnLevelUpPoints(res.level)) : (res.nextExperience);
+            model.findOneAndUpdate({ discord_id: message.author.id }, { $inc: { messagesWritten: 1, experience: parseInt(exp), money: money, shards: shards }, $set: { nextExperience: nextEXP } })
             .exec((err) => {
                 if(err) return console.log(err);
             });
 
-            if(res.experience >= utils.returnLevelUpPoints(res.level, res.messagesWritten)) {
-                const guild = Client.guilds.cache.get(channels.guild_id);
-
-                model.updateOne({ discord_id: message.author.id }, { $inc: { level: 1 }})
+            if(res.experience >= nextEXP) {
+                model.updateOne({ discord_id: message.author.id }, { $inc: { level: 1 } })
                 .exec((err) => {
                     if(err) return console.log(err);
                 });
 
-                utils.setRoleForLevel(message, res.level);
+                utils.setRoleForLevel(message, res.level + 1);
 
                 const level = {
                     color: 0x4287f5,
@@ -91,7 +89,7 @@ module.exports = {
                         
                         {
                             name: `${emojis.xp}Next Level EXP`,
-                            value: '`💸 ' + `${utils.numberWithCommas(utils.returnLevelUpPoints((res.level + 1), res.messagesWritten))}` + '`',
+                            value: '`💸 ' + `${utils.numberWithCommas(res.nextExperience)}` + '`',
                             inline: true
                         }
                     ]

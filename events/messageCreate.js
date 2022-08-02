@@ -10,7 +10,7 @@ module.exports = {
             return false;
             
        require('../systems/level').execute(message);        
-       require('../systems/tickets').transcript(message);        
+       require('./interactions/tickets').transcript(message);        
 
         if(!message.content.startsWith(`${process.env.PREFIX} `))
             return false;

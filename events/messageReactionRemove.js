@@ -3,6 +3,6 @@ const suggestModel = require('../db/suggestSchema');
 
 module.exports = {
     execute(reaction) { 
-        require('../systems/suggest').reactionRemove(reaction);
+        require('./interactions/suggest').reactionRemove(reaction);
     }
 }
