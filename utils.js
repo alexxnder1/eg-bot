@@ -6,8 +6,8 @@ module.exports = {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     
-    returnLevelUpPoints(level) {
-        return parseInt(level * 182 * (Math.floor(Math.random() * 666)));
+    returnLevelUpPoints(level, exp) {
+        return parseInt(level * (240 + exp));
     },
 
     setRoleForLevel(message, level) {

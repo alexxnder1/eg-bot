@@ -13,7 +13,7 @@ module.exports = {
             var statsFields = [
                 {
                     name: `Level ${res.level} ${emojis.xp} `,
-                    value: `(${utils.numberWithCommas(res.experience)}/${utils.numberWithCommas(res.nextExperience)} EXP)`,
+                    value: `(${utils.numberWithCommas(res.experience)}/${utils.numberWithCommas(utils.returnLevelUpPoints(res.level, res.experience))} EXP)`,
                     inline: false
                 },
 

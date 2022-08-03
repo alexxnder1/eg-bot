@@ -16,7 +16,7 @@ module.exports = {
     
         if(int.message.channel.id === channels.rules_channel) {
             const notVerified = guild.roles.cache.find(role => role.id === channels.not_verified_role_id);
-            
+
             int.member.roles.add(memberRole);
             int.member.roles.remove(notVerified);
         }
@@ -26,7 +26,7 @@ module.exports = {
             
         require('./interactions/coinflip').decline(int);
         require('./interactions/coinflip').cancel(int);
-        require('./interactions/suggest').interaction(int);
+        require('./interactions/crash').execute(int);
     
         if(int.customId === 'help-economy') {
             require('./interactions/economy').execute(int, guild);

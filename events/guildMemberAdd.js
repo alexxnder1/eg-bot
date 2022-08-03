@@ -53,7 +53,7 @@ module.exports = {
                 });
             }
             
-            const levelRole = guild.roles.cache.find(role => role.name === `Level ${res.level}`);
+            const levelRole = guild.roles.cache.find(role => role.name === `Level ${(res) ? res.level : 1}`);
             member.roles.add(levelRole);
         });
     }

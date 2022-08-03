@@ -58,13 +58,12 @@ module.exports = {
             const exp = Math.floor(Math.random() * 150) * (res.level / 2);
             const money = Math.floor(Math.random() * 525 * res.level);
                 
-            const nextEXP = (!res.nextExperience) ? (utils.returnLevelUpPoints(res.level)) : (res.nextExperience);
-            model.findOneAndUpdate({ discord_id: message.author.id }, { $inc: { messagesWritten: 1, experience: parseInt(exp), money: money, shards: shards }, $set: { nextExperience: nextEXP } })
+            model.findOneAndUpdate({ discord_id: message.author.id }, { $inc: { messagesWritten: 1, experience: parseInt(exp), money: money, shards: shards } })
             .exec((err) => {
                 if(err) return console.log(err);
             });
 
-            if(res.experience >= nextEXP) {
+            if(res.experience >= utils.returnLevelUpPoints(res.level + 1, res.experience)) {
                 model.updateOne({ discord_id: message.author.id }, { $inc: { level: 1 } })
                 .exec((err) => {
                     if(err) return console.log(err);
@@ -89,7 +88,7 @@ module.exports = {
                         
                         {
                             name: `${emojis.xp}Next Level EXP`,
-                            value: '`💸 ' + `${utils.numberWithCommas(res.nextExperience)}` + '`',
+                            value: '`💸 ' + `${utils.numberWithCommas(utils.returnLevelUpPoints(res.level, res.experience))}` + '`',
                             inline: true
                         }
                     ]

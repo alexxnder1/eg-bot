@@ -52,6 +52,7 @@ Client.on('ready', () => {
 
     require('./timers/muteTimer').execute();
     require('./timers/banTimer').execute();
+    require('./systems/crash').execute();
 
     // require('./systems/level').generate_roles();
 });
