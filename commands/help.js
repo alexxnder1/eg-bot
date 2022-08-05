@@ -1,7 +1,26 @@
 const { PermissionsBitField, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const server_info = require('../db/serverInfoSchema');
 
 module.exports = {
     execute(message) {
+
+        server_info.create({
+            gate_channel: "980082274244632576",
+            ticket_channel: "1001405952735576215",
+            suggest_channel: "1002859133332111370",
+            rules_channel: "953355987551662110",
+        
+            guild_id: "881118014366445578",
+            bot_id: "1000077848536678440",
+            dev_id: "285032425187180546",
+            not_verified_role_id: "1002820437081849896",
+        
+            ticket_log_channel:  "1001495022035796089",
+            ban_log_channel: "1001845330406551662",
+            kick_log_channel: "1001840771118411866",
+            mute_log_channel: "1001814428058124299"
+        });
+
         const field = [
             {
                 name: "Normal Commands",

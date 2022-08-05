@@ -1,9 +1,9 @@
-const channels = require('../../channels.json');
+const channels = require('../../settings.json');
 const suggestModel = require('../../db/suggestSchema');
 
 module.exports = {
     reactionAdd(reaction) {
-        if(reaction.message.channel.id !== channels.suggest_channel) 
+        if(reaction.message.channel.id !== server_info[0].suggest_channel) 
             return false;
 
         if(reaction.emoji.name !==  '👍' && reaction.emoji.name !==  '👎')
@@ -28,7 +28,7 @@ module.exports = {
     },
 
     reactionRemove(reaction) {
-        if(reaction.message.channelId !== channels.suggest_channel) 
+        if(reaction.message.channelId !== server_info[0].suggest_channel) 
             return false;
 
         if(reaction.emoji.name !==  '👍' && reaction.emoji.name !==  '👎')

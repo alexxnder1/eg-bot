@@ -1,5 +1,5 @@
 const Client = require('../index');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 
 require('dotenv').config();
        
@@ -11,11 +11,11 @@ module.exports = {
         // ticket system
         require('./interactions/tickets').execute(int);
     
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
         const memberRole = guild.roles.cache.find((role) => role.name === 'Member');
     
-        if(int.message.channel.id === channels.rules_channel) {
-            const notVerified = guild.roles.cache.find(role => role.id === channels.not_verified_role_id);
+        if(int.message.channel.id === server_info[0].rules_channel) {
+            const notVerified = guild.roles.cache.find(role => role.id === server_info[0].not_verified_role_id);
 
             int.member.roles.add(memberRole);
             int.member.roles.remove(notVerified);

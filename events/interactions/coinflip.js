@@ -1,5 +1,5 @@
 const Client = require('../../index');
-const channels = require('../../channels.json');
+const server_info = require('../../db/loadServerInfo');
 const emojis = require('../../emojis.json');
 const utils = require('../../utils');
 const userModel = require('../../db/userSchema');
@@ -8,7 +8,7 @@ const { coinflips } = require('../../commands/coinflip');
 
 module.exports = {
     accept(memberid, channelid, messageid) {
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
         const channel = guild.channels.cache.get(channelid);
         const message = channel.messages.cache.find((msg) => msg.id === messageid);
 
@@ -16,9 +16,9 @@ module.exports = {
             return channel.send(`<@${memberid}> you don't have a coinflip challenge active.`);
         
         const challange = coinflips.find((coin) => coin.target_id === memberid);
-        channel.send(`${(memberid === channels.bot_id) ? ("I") : (`<@${challange.target_id}>`)} accepted <@${challange.challanger_id}>'s challange for a coinflip round. [bet: $${utils.numberWithCommas(challange.bet)}]`);
+        channel.send(`${(memberid === server_info[0].bot_id) ? ("I") : (`<@${challange.target_id}>`)} accepted <@${challange.challanger_id}>'s challange for a coinflip round. [bet: $${utils.numberWithCommas(challange.bet)}]`);
         
-        if(memberid !== channels.bot_id) 
+        if(memberid !== server_info[0].bot_id) 
             message.edit({ components: [] });
 
         const chance = Math.floor(Math.random() * 101);
@@ -95,7 +95,7 @@ module.exports = {
                     if(err) return console.log(err);
                 });
 
-                const guild = Client.guilds.cache.get(channels.guild_id);
+                const guild = Client.guilds.cache.get(server_info[0].guild_id);
                 guild.members.fetch(winner).then((memberWinner) => {
                     guild.members.fetch(looser).then((memberLooser) => {
                         const embeed = {
@@ -124,10 +124,10 @@ module.exports = {
                        msg.edit({embeds: [embeed]});
                        coinflips.splice(coinflips.indexOf(challange));
                         
-                       if(winner === channels.bot_id)
+                       if(winner === server_info[0].bot_id)
                         message.channel.send("Bruuh.. i'm a pro gambler.");
                     
-                       else if(looser === channels.bot_id)
+                       else if(looser === server_info[0].bot_id)
                         message.channel.send("Neah... Not was my good time.");
                     });        
                 });
@@ -140,7 +140,7 @@ module.exports = {
         if(int.customId !== 'coinflip-decline') 
             return false;
 
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
         
         const channel = guild.channels.cache.get(int.message.channelId);
         const message = channel.messages.cache.find((msg) => msg.id === int.message.id);
@@ -160,7 +160,7 @@ module.exports = {
         if(int.customId !== 'coinflip-cancel') 
             return false;
 
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
         
         const channel = guild.channels.cache.get(int.message.channelId);
         const message = channel.messages.cache.find((msg) => msg.id === int.message.id);

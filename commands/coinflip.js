@@ -1,5 +1,5 @@
 const Client = require('../index');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 const userModel = require('../db/userSchema');
 const utils = require('../utils.js');
 const emojis = require('../emojis.json');
@@ -25,7 +25,7 @@ module.exports = {
         if(coinflips.find((ch) => ch.target_id == message.mentions.users.first()))
             return message.reply(`This user is already challanged by <@${ch.challanger_id}>.`);
 
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
         guild.members.fetch(message.mentions.users.first()).then((member) => {
             var bet = splitted[2];
 
@@ -43,8 +43,8 @@ module.exports = {
             if(member.user.id === message.author.id)
                 return message.reply("You can not challange yourself.");
 
-            if(member.user.bot && message.mentions.users.first().id !== channels.bot_id) {
-                return message.reply(`You can not challenge other bots than <@${channels.bot_id}>.`);
+            if(member.user.bot && message.mentions.users.first().id !== server_info[0].bot_id) {
+                return message.reply(`You can not challenge other bots than <@${server_info[0].bot_id}>.`);
             }
                 
             userModel.findOne({ discord_id: message.author.id }, (err, res) => {   
@@ -59,9 +59,9 @@ module.exports = {
                     if(bet > res.money) {
                         if(member.user.bot) {
                             const botMoney = Math.floor(bet + Math.random() * 500000);
-                            message.reply(`I don't have that amount of money! But, I asked my creator <@${channels.dev_id}> and he gave me +$${utils.numberWithCommas(botMoney)} ${emojis.money}.`);
+                            message.reply(`I don't have that amount of money! But, I asked my creator <@${server_info[0].dev_id}> and he gave me +$${utils.numberWithCommas(botMoney)} ${emojis.money}.`);
                             
-                            userModel.updateOne({ discord_id: channels.bot_id }, { $inc: { money: botMoney } }).then((err) => {
+                            userModel.updateOne({ discord_id: server_info[0].bot_id }, { $inc: { money: botMoney } }).then((err) => {
                                 if(err) return console.log(err);
                             });
                         }
@@ -107,7 +107,7 @@ module.exports = {
                     });
 
                     if(member.user.bot) 
-                        require('../events/interactions/coinflip').accept(channels.bot_id, message.channel.id, message.id);
+                        require('../events/interactions/coinflip').accept(server_info[0].bot_id, message.channel.id, message.id);
                 });
             });
         });

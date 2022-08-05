@@ -1,10 +1,10 @@
 const userModel = require('../db/userSchema');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 const Client = require('../index');
 
 module.exports = {
     execute(member) {       
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
 
         guild.members.fetch(member.user.id).then((m) => {
             const name = (m.nickname) ? m.nickname : m.user.username;

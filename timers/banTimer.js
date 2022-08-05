@@ -1,6 +1,6 @@
 const banModel = require('../db/banSchema');
 const Client = require('../index');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 
 module.exports = {
     execute() {
@@ -15,7 +15,7 @@ module.exports = {
                 if(res.duration <= new Date().getTime())
                 {
                     const guild = Client.guilds.cache.get('881118014366445578');
-                    const banLogChannel = guild.channels.cache.find((chn) => chn.id === channels.ban_log_channel);
+                    const banLogChannel = guild.channels.cache.find((chn) => chn.id === server_info[0].ban_log_channel);
     
                     // unban
                     guild.members.unban(res.discord_id, 'time expired');

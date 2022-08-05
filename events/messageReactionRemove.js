@@ -1,4 +1,4 @@
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 const suggestModel = require('../db/suggestSchema');
 
 module.exports = {

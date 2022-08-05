@@ -1,5 +1,5 @@
 const ticketModel = require('../db/ticketSchema');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 
 module.exports = {
     execute(message, arg, reason) {
@@ -7,7 +7,7 @@ module.exports = {
          return message.reply("You don't have the necessary administrator level to use this command.");
 
          var channel = message.guild.channels.cache.find(channel => channel.id === message.channel.id);
-         var ticketsChannel = message.guild.channels.cache.find(channel => channel.id === channels.ticket_log_channel);
+         var ticketsChannel = message.guild.channels.cache.find(channel => channel.id === server_info[0].ticket_log_channel);
 
          if(channel.locked)
              return message.reply("This ticket is already closed.");

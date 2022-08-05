@@ -1,5 +1,5 @@
 const Client = require('./index');
-const channels = require('./channels.json');
+const server_info = require('./db/loadServerInfo');
 
 module.exports = {
     numberWithCommas(x) {
@@ -11,7 +11,7 @@ module.exports = {
     },
 
     setRoleForLevel(message, level) {
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
 
         for(var i = 1; i<=100; i++) {
             if(message.member.roles.cache.some(role => role.name === `Level ${i}`) && i !== level) {

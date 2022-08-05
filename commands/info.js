@@ -1,5 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionOverwriteManager, PermissionsBitField } = require('discord.js');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 const Client = require('../index');
 
 require('dotenv').config()
@@ -10,7 +10,7 @@ module.exports = {
             return message.reply("You can not use this command due to adminstrator level.");
 
         const option = arg[1].split('info')[1].split(' ')[1];
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
 
         switch(option) {
             case 'ticket': {
@@ -40,7 +40,7 @@ module.exports = {
             }
 
             case 'verify': {
-                const rule_channel = guild.channels.cache.find((chn) => chn.id === channels.rules_channel);
+                const rule_channel = guild.channels.cache.find((chn) => chn.id === server_info[0].rules_channel);
         
                 const embed = {
                     color: 0x43b000,

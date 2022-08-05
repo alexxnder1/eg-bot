@@ -1,5 +1,5 @@
 const Client = require('../index');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 const userModel = require('../db/userSchema');
 const utils = require('../utils');
 
@@ -23,7 +23,7 @@ module.exports = {
         if(matches.some(match => match.target === mention) || matches.some(match => match.challanger === mention))
             return message.reply("That user is already in a tic-tac-toe challange with somebody.");
 
-        if(mention === message.author.id)
+        if(mention.id === message.author.id)
             return message.reply("You can not challange yourself.");
 
         userModel.findOne({ discord_id: message.author.id }, (err, res) => {

@@ -1,6 +1,6 @@
 const { PermissionsBitField, } = require('discord.js');
 const banModel = require('../db/banSchema');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 
 module.exports = {
     execute(message, arg, splitted) {
@@ -18,7 +18,7 @@ module.exports = {
         if(!reason || reason.length < 3 || time < 0)
             return message.reply("* ban <mention_user> <time (0=permanent) [days]> <reason>");
 
-        const banLogChannel = message.guild.channels.cache.find((chn) => chn === channels.ban_log_channel);
+        const banLogChannel = message.guild.channels.cache.find((chn) => chn === server_info[0].ban_log_channel);
 
         message.guild.members.fetch(mention).then((member) => {
             member.ban().catch((err) => {

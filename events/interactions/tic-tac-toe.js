@@ -1,5 +1,5 @@
 const { matches } = require('../../commands/tic-tac-toe');
-const channels = require('../../channels.json');
+const server_info = require('../../db/loadServerInfo');
 const Client = require('../../index');
 const { ButtonBuilder, ButtonStyle, ActionRow, ActionRowBuilder } = require('discord.js');
 const userModel = require('../../db/userSchema');
@@ -78,6 +78,16 @@ const winAlgorithm = (match) => {
     return -1;
 };
 
+
+const resetMatchVars = (match) => {
+    match.invite_msg.delete({ timeout: 1000 });
+    
+    for(var i = 0; i < 3; i++)
+        match.page[i].delete();
+
+    matches.splice(match);
+}
+
 module.exports = {
     execute(int) {
         var match = matches.find(match => match.target === int.member.id);
@@ -88,7 +98,7 @@ module.exports = {
         if(!match)
             return false;
 
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
         const channel = guild.channels.cache.get(int.channel.id);
         const target_member = guild.members.cache.get(match.target);
         const challanger_member = guild.members.cache.get(match.challanger);
@@ -140,45 +150,49 @@ module.exports = {
                     }
                 }
 
-                if(winAlgorithm(match) != -1) {
-                    userModel.findOne({ discord_id: match.challanger }, (err, res) => {
+                userModel.findOne({ discord_id: match.challanger }, (err, res) => {
+                    userModel.findOne({ discord_id: match.target }, (err, _res) => {
                         if(err) return console.log(err);
-                        if(res.money < match.money) {
-                            
+                        if(res.money < match.money || _res.money < match.money) {
+                            message.channel.send(`<@${int.member.id}>-<@${match.challanger}> tic-tac-toe challange was canceled because one of them doesn't have money.`).then((msg) => {
+                                setTimeout(() => {
+                                    msg.delete({timeout: 1000});
+                                    message.delete();
+                                }, 4000);
+                            });
+                            return resetMatchVars(match);
                         }
-                    })
+                    });
+                });
 
+                if(winAlgorithm(match) != -1) {
                     match.waiting = true;
-                    setTimeout(() => {
-                        for(var i = 0; i < 3; i++)
-                            match.page[i].delete();
-
+                    setTimeout(() => {   
                         match.embed.description = `${challanger_member.user.tag} [X] - ${target_member.user.tag} [0]`;
                         match.embed.fields.push(
                             {
                                 name: 'Winner',
                                 value: `<@${winner}> [+$${utils.numberWithCommas(match.money)}]`
                             },
-
+    
                             {
                                 name: 'Looser',
                                 value: `<@${looser}> [-$${utils.numberWithCommas(match.money)}]`
                             },
                         );
-
+    
                         message.edit({ embeds: [match.embed] });
-
+    
                         userModel.updateOne({ discord_id: winner }, { $inc: { money: match.money } }, (err) => {
                             if(err) return console.log(err);
                         });
-
+    
                         userModel.updateOne({ discord_id: looser }, { $inc: { money: -match.money } }, (err) => {
                             if(err) return console.log(err);
                         });
-
+    
                         setTimeout(() => {
-                            message.delete();
-                            matches.splice(match);             
+                            resetMatchVars(match);         
                         }, 10000);
                     }, 2500);
                 }
@@ -200,8 +214,7 @@ module.exports = {
                         message.edit({ embeds: [match.embed] });;
 
                         setTimeout(() => {
-                            message.delete();
-                            matches.splice(match);             
+                            resetMatchVars(match);           
                         }, 10000);
                     }, 2500);
                 }
@@ -231,7 +244,6 @@ module.exports = {
                 match.accepted = true;
                 match.embed = embed;
 
-                var id = 0;
                 for(var i = 0 ; i < 9; i++)
                 {
                     match.buttons[getButtonPageById(i)].addComponents(

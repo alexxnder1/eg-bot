@@ -2,12 +2,12 @@ const model = require('../db/userSchema');
 const utils = require('../utils');
 const emojis = require('../emojis.json');
 const Client = require('../index');
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 const userModel = require('../db/userSchema');
 
 module.exports = {
     generate_roles() {
-        const guild = Client.guilds.cache.get(channels.guild_id);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
         for(var i = 1; i <= 100; i++) {
             if(!guild.roles.cache.some(role => role.name === `Level ${i}`)) {
                 var color = 0xffffff;

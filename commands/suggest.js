@@ -1,4 +1,4 @@
-const channels = require('../channels.json');
+const server_info = require('../db/loadServerInfo');
 const Client = require('../index');
 const suggestModel = require('../db/suggestSchema');
 
@@ -11,8 +11,8 @@ module.exports = {
         if(!text || text.length < 7)
             return message.reply('You must type a good and real reason.').then((msg) => {setTimeout(() => msg.delete({ timeout: 1000 }) , 4000); });
 
-        const guild = Client.guilds.cache.get(channels.guild_id);
-        const channel = guild.channels.cache.find((chn) => chn.id === channels.suggest_channel);
+        const guild = Client.guilds.cache.get(server_info[0].guild_id);
+        const channel = guild.channels.cache.find((chn) => chn.id === server_info[0].suggest_channel);
         console.log(channel);
 
         suggestModel.count({}, (err, res) => {
