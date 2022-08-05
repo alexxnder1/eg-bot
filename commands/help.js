@@ -5,7 +5,7 @@ module.exports = {
         const field = [
             {
                 name: "Normal Commands",
-                value: "`Economy: \n* stats - shows your account statistics (money, exp, etc) \n* rank - reveals your rank \n* top - shows you the server classification of members in the server sorted by level, money, exp & shards \n\nUseful: \n* suggest <description of the suggest> (only in the suggest channel) \n\nGambling: \n* coinflip <mention [eg-bot/user]> <$bet> \n\nMusic:\n * play <track>` \n`* pause` \n`* resume` \n`* skip` \n`* remove <track_id>` \n`* loop <disabled/song/queue>` \n`* clear (clears the queue)` \n`* queue`\n\n",
+                value: "`Economy: \n* stats - shows your account statistics (money, exp, etc) \n* rank - reveals your rank \n* top - shows you the server classification of members in the server sorted by level, money, exp & shards \n\nUseful: \n* suggest <description of the suggest> (only in the suggest channel) \n\nGames: \n* tic-tac-toe <mention> <$bet> \n* coinflip <mention [eg-bot/user]> <$bet> \n\nMusic:\n * play <track>` \n`* pause` \n`* resume` \n`* skip` \n`* remove <track_id>` \n`* loop <disabled/song/queue>` \n`* clear (clears the queue)` \n`* queue`\n\n",
             }
         ];
 
@@ -14,7 +14,7 @@ module.exports = {
             field.push(
                 {
                     name: "Debug Commands [administrators]",
-                    value: "`* debug <users> - query through all members on the server and insert them again in the db.`\n`* info <ticket/verify> (sends a message with a button for open ticket/verify user)`",
+                    value: "`* debug <users> - query through all members on the server and insert them again in the db.`\n`* info <ticket/verify> (sends a message with a button for open ticket/verify user)`\n`* clear <message_count> - clears an amount of messages in the channel you write.`",
                 },
             );
         }
@@ -43,7 +43,7 @@ module.exports = {
             color: 0x9234eb,
         	author: {
                 name: "Eastern Games Bot | Help Menu",
-                icon_url: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`,
+                icon_url: message.member.displayAvatarURL()
             },
 
             thumbnail:{

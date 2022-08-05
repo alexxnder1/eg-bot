@@ -16,9 +16,9 @@ module.exports = {
             return message.reply(`You are in a challange with somebody.`);
 
         const mention = message.mentions.users.first();
-        const bet = splitted[2];
-        if(!mention || bet < 0)
-            return message.reply(`${process.env.PREFIX} tic-tac-toe <@mention> <bet>`);
+        const bet = parseInt(splitted[2]);
+        if(!mention || bet < 0 || Number.isNaN(bet))
+            return message.reply('`' + `${process.env.PREFIX} tic-tac-toe <@mention> <bet>` + '`');
 
         if(matches.some(match => match.target === mention) || matches.some(match => match.challanger === mention))
             return message.reply("That user is already in a tic-tac-toe challange with somebody.");

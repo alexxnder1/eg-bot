@@ -34,7 +34,7 @@ module.exports = {
 
             bet = parseInt(bet);
 
-            if(!bet)
+            if(!bet || Number.isNaN(bet))
                 return message.reply("Invalid bet amount.");
 
             if(!member)

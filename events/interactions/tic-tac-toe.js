@@ -141,6 +141,13 @@ module.exports = {
                 }
 
                 if(winAlgorithm(match) != -1) {
+                    userModel.findOne({ discord_id: match.challanger }, (err, res) => {
+                        if(err) return console.log(err);
+                        if(res.money < match.money) {
+                            
+                        }
+                    })
+
                     match.waiting = true;
                     setTimeout(() => {
                         for(var i = 0; i < 3; i++)
@@ -176,7 +183,7 @@ module.exports = {
                     }, 2500);
                 }
 
-                else if(count === 9 ){
+                else if(count === 9){
                     match.waiting = true;
                     setTimeout(() => {
                         for(var i = 0; i < 3; i++)
