@@ -26,7 +26,7 @@ module.exports = {
             
         require('./interactions/coinflip').decline(int);
         require('./interactions/coinflip').cancel(int);
-        require('./interactions/crash').execute(int);
+        require('./interactions/tic-tac-toe').execute(int);
     
         if(int.customId === 'help-economy') {
             require('./interactions/economy').execute(int, guild);
