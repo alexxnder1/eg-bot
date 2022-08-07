@@ -7,7 +7,7 @@ module.exports = {
     },
     
     returnLevelUpPoints(level, exp) {
-        return parseInt(level * (240 + exp));
+        return parseInt(level * 58222);
     },
 
     setRoleForLevel(message, level) {

@@ -1,5 +1,6 @@
-const channels = require('../../settings.json');
 const suggestModel = require('../../db/suggestSchema');
+const server_info = require('../../db/loadServerInfo');
+
 
 module.exports = {
     reactionAdd(reaction) {

@@ -21,7 +21,7 @@ module.exports = {
             int.member.roles.remove(notVerified);
         }
 
-        if(int.customid === 'coinflip-accept')
+        if(int.customId === 'coinflip-accept')
             require('./interactions/coinflip').accept(int.member.id, int.message.channelId, int.message.id);
             
         require('./interactions/coinflip').decline(int);

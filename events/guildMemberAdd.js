@@ -1,16 +1,17 @@
 const userModel = require('../db/userSchema');
 const Client = require('../index');
 const server_info = require('../db/loadServerInfo');
-const sis_model = require('../db/serverInfoSchema');
 
 module.exports = {
     execute(member) {
-        member.roles.add(server_info[0].not_verified_role_id);
-
-        console.log(`[Join] ${member.user.tag} joined the party.`);
-
         const guild = Client.guilds.cache.get(server_info[0].guild_id);
         let channel = guild.channels.cache.get(server_info[0].gate_channel);
+
+        console.log(server_info[0].not_verified_role_id);
+        const nv_role = guild.roles.cache.find((role) => role.id === server_info[0].not_verified_role_id);        
+        member.roles.add(nv_role);
+
+        console.log(`[Join] ${member.user.tag} joined the party.`);
         member.send(`Hi there! 👋 Welcome to Eastern Games server. Please read our <#${server_info[0].rules_channel}> and then verify your account on the same channel.`);
 
         const welcomeEmbed = {
@@ -55,8 +56,8 @@ module.exports = {
                     created: new Date(member.user.createdTimestamp).toUTCString()
                 });
             }
-            
-            const levelRole = guild.roles.cache.find(role => role.name === `Level ${(res) ? res.level : 1}`);
+    
+            const levelRole = guild.roles.cache.find((role) => role.name === `Level ${(res) ? res.level : 1}`);
             member.roles.add(levelRole);
         });
     }
