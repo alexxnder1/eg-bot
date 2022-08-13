@@ -1,8 +1,8 @@
 const { SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
+const { numberWithCommas, returnSkillUpPoints } = require('../../utils');
 const userModel = require('../db/schemas/userSchema');
 const fs = require('fs');
 const path = require('path');
-const { numberWithCommas, returnSkillUpPoints } = require('../../utils');
 
 const data = new SlashCommandBuilder()
     .setName('fish')
@@ -96,7 +96,7 @@ async function execute(int) {
             fishingUsers.splice(fishingUsers.indexOf(int.user.id));
 
             var fishNameFormatted = '';
-            const splitted = __dirname.split('\\src\\commands')[0];
+            const splitted = __dirname.split('app\\src\\commands')[0];
             fishes.names.forEach((f) => {
                 if(f === fishName) {
                     f = f.replace(' ', '_');
