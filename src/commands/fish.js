@@ -113,8 +113,9 @@ async function execute(int) {
                 console.log(file);
             }    
 
-            let cheloo = path.join(__dirname, "../../");
-            const fishPath = path.join(cheloo, `assets/fishes/${fishNameFormatted}`);
+            var cheloo = path.join(__dirname, "../../");
+            console.log(cheloo);
+            const fishPath = path.join(cheloo, `assets/fishes/${fishNameFormatted.toLowerCase()}`);
             console.log(fishPath);
 
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
