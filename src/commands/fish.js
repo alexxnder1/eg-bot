@@ -131,7 +131,7 @@ async function execute(int) {
                     attachment
                 ],
                 thumbnail: {
-                    url: `attachment://${fishNameFormatted}`
+                    url: `attachment://${fishNameFormatted.toLowerCase()}`
                 },
                 fields: [
                     {
