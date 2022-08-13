@@ -36,9 +36,10 @@ fishes.prices.forEach((price) => {
 
 async function execute(int) {
     console.log(__dirname);
+    console.log(__dirname.split('src\\commands'));
 
-    const files = fs.readdirSync(__dirname.split('src\\commands')[0]);
-    console.log(files);
+    // const files = fs.readdirSync);
+    // console.log(files);
 
     return false;
     if(fishingUsers.find((user) => user == int.user.id))
