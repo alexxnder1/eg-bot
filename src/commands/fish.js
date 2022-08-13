@@ -30,7 +30,6 @@ for(const file of files) {
 
 fishes.prices.forEach((price) => {
     let id = fishes.prices.indexOf(price) + 1;
-    console.log(id);
     fishes.phase.push(Math.round(id / 5));
 });
 
@@ -61,9 +60,7 @@ async function execute(int) {
             // skill + rand(10) = 20
             var fishes_with_phase = [];
             let test = Math.floor(Math.random() * 101);
-            console.log(test);
             const phase = Math.round(test / 25);
-            console.log(phase);
             fishes.phase.forEach((p) => {
                 if(p == phase)
                     fishes_with_phase.push(fishes.phase.indexOf(p));
@@ -71,7 +68,6 @@ async function execute(int) {
 
             let iddd = Math.floor(Math.random() * fishes_with_phase.length);
             const randomFish = fishes_with_phase[iddd];
-            console.log(iddd + " " + randomFish);
             const fishName = fishes.names[randomFish];
             const fishPrice = fishes.prices[randomFish];
 
@@ -103,7 +99,7 @@ async function execute(int) {
             var fishNameFormatted = '';
             fishes.names.forEach((f) => {
                 if(f === fishName) {
-                    f = f.replace(' ', '_');
+                    f = f.replaceAll(' ', '_');
                     f += `-${fishPrice}.png`
                     fishNameFormatted = f;
                 }
