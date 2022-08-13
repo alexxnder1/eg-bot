@@ -66,8 +66,6 @@ async function execute(int) {
             fishes.phase.forEach((p) => {
                 if(p == phase)
                     fishes_with_phase.push(fishes.phase.indexOf(p));
-
-                console.log(p);
             });
 
             const randomFish = fishes_with_phase[Math.floor(Math.random() * fishes_with_phase.length)];
