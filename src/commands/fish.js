@@ -106,6 +106,7 @@ async function execute(int) {
             });
 
 
+            console.log(__dirname.split('../../'));
             const fishPath = path.join(__dirname.split('../../').toString(), `assets/fishes/${fishNameFormatted}`);
             console.log(fishPath);
 
