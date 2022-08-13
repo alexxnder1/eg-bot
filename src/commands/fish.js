@@ -28,7 +28,7 @@ for(const file of files) {
     fishes.prices.push(price);
 }
 
-fishes.prices.forEach((price) => {
+fishes.prices.sort((a,b) => a-b).forEach((price) => {
     let id = fishes.prices.indexOf(price);
     fishes.phase.push(Math.round(id / 5));
 });
