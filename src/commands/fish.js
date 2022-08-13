@@ -106,8 +106,14 @@ async function execute(int) {
 
             console.log(__dirname);
             console.log(path.join(__dirname, "../"));
+            let path = path.join(path.join(__dirname, "../../");
+            const files = fs.readdirSync(path);
+            for(const file of files) {
+                console.log(file);
+            }    
+
             const fishPath = path.join(path.join(__dirname, "../../").toString(), `assets/fishes/${fishNameFormatted}`);
-            console.log(fishPath);
+            // console.log(fishPath);
 
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
             
