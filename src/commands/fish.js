@@ -106,7 +106,7 @@ async function execute(int) {
             });
 
 
-            const fishPath = path.join(__dirname.split('../../'), `assets/fishes/${fishNameFormatted}`);
+            const fishPath = path.join(__dirname.split('../../').toString(), `assets/fishes/${fishNameFormatted}`);
             console.log(fishPath);
 
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
