@@ -97,8 +97,6 @@ async function execute(int) {
 
             console.log(__dirname);
             var fishNameFormatted = '';
-            const splitted = __dirname.split('app/src/commands');
-            console.log(splitted);
             fishes.names.forEach((f) => {
                 if(f === fishName) {
                     f = f.replace(' ', '_');
@@ -107,6 +105,8 @@ async function execute(int) {
                 }
             });
 
+
+            console.log(fishPath);
             const fishPath = path.join(splitted, `assets/fishes/${fishNameFormatted}`);
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
             
