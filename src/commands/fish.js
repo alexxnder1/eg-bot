@@ -35,7 +35,7 @@ fishes.prices.forEach((price) => {
 });
 
 async function execute(int) {
-    const files = fs.readdirSync(__dirname);
+    const files = fs.readdirSync(__dirname.split('commands'));
     console.log(files);
 
     return false;
