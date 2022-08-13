@@ -97,6 +97,7 @@ async function execute(int) {
 
             console.log(__dirname);
             var fishNameFormatted = '';
+            const splitted = __dirname.split('app\\src\\commands');
             fishes.names.forEach((f) => {
                 if(f === fishName) {
                     f = f.replace(' ', '_');
@@ -104,6 +105,7 @@ async function execute(int) {
                     fishNameFormatted = f;
                 }
             });
+
 
             const fishPath = path.join(splitted, `assets/fishes/${fishNameFormatted}`);
             console.log(fishPath);
