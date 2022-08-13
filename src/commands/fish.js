@@ -108,7 +108,8 @@ async function execute(int) {
             console.log(__dirname);
             console.log(path.join(__dirname, "../../"));
             const fishPath = path.join(path.join(__dirname, "../../../"), `assets/fishes/${fishNameFormatted}`);
-
+            console.log(fishPath);
+            
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
             
             var skbonus = 0;
