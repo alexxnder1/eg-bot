@@ -59,7 +59,7 @@ async function execute(int) {
 
             // skill + rand(10) = 20
             var fishes_with_phase = [];
-            let test = Math.floor(Math.random() * 101);
+            let test = Math.floor(1 + Math.random() * 100);
             const phase = Math.round(test / 25);
             fishes.phase.forEach((p) => {
                 if(p == phase)
