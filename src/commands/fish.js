@@ -93,8 +93,6 @@ async function execute(int) {
                     count: 1
                 });
             }
-            console.log(__dirname.split('../../'));
-
             fishingUsers.splice(fishingUsers.indexOf(int.user.id));
 
             var fishNameFormatted = '';
@@ -107,7 +105,7 @@ async function execute(int) {
             });
 
 
-            const fishPath = path.join(__dirname.split('../../').toString(), `assets/fishes/${fishNameFormatted}`);
+            const fishPath = path.join(path.join(__dirname, "../../"), `assets/fishes/${fishNameFormatted}`);
             console.log(fishPath);
 
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
