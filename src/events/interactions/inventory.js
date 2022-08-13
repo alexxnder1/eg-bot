@@ -23,7 +23,7 @@ module.exports = {
                 
                 res.money = res.money + (money * count);                
                 await int.reply({ content: `You just sold out ${name} [${count}x] for $${numberWithCommas(money * count)}.`, ephemeral: true });
-                res.fishes.splice(res.fishes[id]);
+                res.fishes.splice(res.fishes[id], 1);
             }
 
             if(int.values[0].startsWith('inv-wallpaper-')) {
