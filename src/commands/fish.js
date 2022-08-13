@@ -17,8 +17,9 @@ const fishes = {
 var fishingUsers = [];
 
 const fishPath = path.join(__dirname, "../../assets/fishes/");
-const files = fs.readdirSync(fishPath).filter(file => file.endsWith('.png'));
+const files = fs.readdirSync(__dirname).filter(file => file.endsWith('.png'));
 for(const file of files) {
+    console.log(file);
     let name = file.split('.png')[0].replaceAll('_', ' ');
     let price = name.split('-')[1];
     name = name.split('-')[0];
