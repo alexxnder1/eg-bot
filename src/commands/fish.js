@@ -35,13 +35,6 @@ fishes.prices.forEach((price) => {
 });
 
 async function execute(int) {
-    console.log(__dirname);
-    console.log(path.join(__dirname, "../../"));
-
-    // const files = fs.readdirSync);
-    // console.log(files);
-
-    return false;
     if(fishingUsers.find((user) => user == int.user.id))
         return int.reply({ content: 'You already have thrown the fishing rod.', ephemeral: true });
     
@@ -104,7 +97,7 @@ async function execute(int) {
             fishingUsers.splice(fishingUsers.indexOf(int.user.id));
 
             var fishNameFormatted = '';
-            const splitted = __dirname.split('app\\src\\commands')[0];
+            const splitted = __dirname.split('../../');
             console.log(splitted);
             fishes.names.forEach((f) => {
                 if(f === fishName) {
