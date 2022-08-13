@@ -105,9 +105,9 @@ async function execute(int) {
                 }
             });
 
-
-            console.log(fishPath);
             const fishPath = path.join(splitted, `assets/fishes/${fishNameFormatted}`);
+            console.log(fishPath);
+
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
             
             var skbonus = 0;
