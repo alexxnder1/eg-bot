@@ -28,7 +28,7 @@ for(const file of files) {
     fishes.prices.push(price);
 }
 
-fishes.prices.sort((a,b) => a-b).forEach((price) => {
+fishes.prices.forEach((price) => {
     let id = fishes.prices.indexOf(price);
     fishes.phase.push(Math.round(id / 5));
 });
@@ -68,7 +68,9 @@ async function execute(int) {
                     fishes_with_phase.push(fishes.phase.indexOf(p));
             });
 
-            const randomFish = fishes_with_phase[Math.floor(Math.random() * fishes_with_phase.length)];
+            let iddd = Math.floor(Math.random() * fishes_with_phase.length);
+            const randomFish = fishes_with_phase[iddd];
+            console.log(iddd + " " + randomFish);
             const fishName = fishes.names[randomFish];
             const fishPrice = fishes.prices[randomFish];
 
@@ -105,6 +107,13 @@ async function execute(int) {
                     fishNameFormatted = f;
                 }
             });
+
+            let pathh = path.join(path.join(__dirname, "../../"));
+            const files = fs.readdirSync(pathh);
+
+            for(const file of files) {
+                console.log(file);
+            }    
 
             var rootDir = path.join(__dirname, "../../");
             const fishPath = path.join(rootDir, `assets/fishes/${fishNameFormatted.toLowerCase()}`);
