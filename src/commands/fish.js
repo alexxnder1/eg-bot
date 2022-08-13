@@ -30,6 +30,7 @@ for(const file of files) {
 
 fishes.prices.forEach((price) => {
     let id = fishes.prices.indexOf(price);
+    console.log(id);
     fishes.phase.push(Math.round(id / 5));
 });
 
