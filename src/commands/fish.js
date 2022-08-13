@@ -106,7 +106,7 @@ async function execute(int) {
 
             console.log(__dirname);
             console.log(path.join(__dirname, "../"));
-            let path = path.join(path.join(__dirname, "../../");
+            let path = path.join(path.join(__dirname, "../../"));
             const files = fs.readdirSync(path);
             for(const file of files) {
                 console.log(file);
