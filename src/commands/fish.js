@@ -97,8 +97,6 @@ async function execute(int) {
             fishingUsers.splice(fishingUsers.indexOf(int.user.id));
 
             var fishNameFormatted = '';
-            const splitted = __dirname.split('../../');
-            console.log(splitted);
             fishes.names.forEach((f) => {
                 if(f === fishName) {
                     f = f.replace(' ', '_');
@@ -108,7 +106,7 @@ async function execute(int) {
             });
 
 
-            const fishPath = path.join(splitted, `assets/fishes/${fishNameFormatted}`);
+            const fishPath = path.join(__dirname.split('../../'), `assets/fishes/${fishNameFormatted}`);
             console.log(fishPath);
 
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
