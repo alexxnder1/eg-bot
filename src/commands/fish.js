@@ -17,7 +17,7 @@ const fishes = {
 var fishingUsers = [];
 
 const fishPath = path.join(__dirname, "../../assets/fishes/");
-const files = fs.readdirSync(__dirname).filter(file => file.endsWith('.png'));
+const files = fs.readdirSync(fishPath).filter(file => file.endsWith('.png'));
 for(const file of files) {
     console.log(file);
     let name = file.split('.png')[0].replaceAll('_', ' ');
@@ -35,6 +35,10 @@ fishes.prices.forEach((price) => {
 });
 
 async function execute(int) {
+    const files = fs.readdirSync(__dirname);
+    console.log(files);
+
+    return false;
     if(fishingUsers.find((user) => user == int.user.id))
         return int.reply({ content: 'You already have thrown the fishing rod.', ephemeral: true });
     
