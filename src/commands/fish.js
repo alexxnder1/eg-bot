@@ -19,7 +19,6 @@ var fishingUsers = [];
 const fishPath = path.join(__dirname, "../../assets/fishes/");
 const files = fs.readdirSync(fishPath).filter(file => file.endsWith('.png'));
 for(const file of files) {
-    console.log(file);
     let name = file.split('.png')[0].replaceAll('_', ' ');
     let price = name.split('-')[1];
     name = name.split('-')[0];
@@ -107,7 +106,7 @@ async function execute(int) {
 
             console.log(__dirname);
             console.log(path.join(__dirname, "../"));
-            const fishPath = path.join(path.join(__dirname, "../../"), `assets/fishes/${fishNameFormatted}`);
+            const fishPath = path.join(path.join(__dirname, "../../").toString(), `assets/fishes/${fishNameFormatted}`);
             console.log(fishPath);
 
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
