@@ -106,13 +106,6 @@ async function execute(int) {
                 }
             });
 
-            let pathh = path.join(path.join(__dirname, "../../"));
-            const files = fs.readdirSync(pathh);
-
-            for(const file of files) {
-                console.log(file);
-            }    
-
             var rootDir = path.join(__dirname, "../../");
             const fishPath = path.join(rootDir, `assets/fishes/${fishNameFormatted.toLowerCase()}`);
 
