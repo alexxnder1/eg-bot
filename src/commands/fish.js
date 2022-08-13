@@ -36,7 +36,7 @@ fishes.prices.forEach((price) => {
 
 async function execute(int) {
     console.log(__dirname);
-    console.log(__dirname.split('src\\commands'));
+    console.log(path.join(__dirname, "../../"));
 
     // const files = fs.readdirSync);
     // console.log(files);
