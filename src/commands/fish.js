@@ -29,7 +29,7 @@ for(const file of files) {
 }
 
 fishes.prices.forEach((price) => {
-    let id = fishes.prices.indexOf(price);
+    let id = fishes.prices.indexOf(price) + 1;
     console.log(id);
     fishes.phase.push(Math.round(id / 5));
 });
@@ -108,13 +108,6 @@ async function execute(int) {
                     fishNameFormatted = f;
                 }
             });
-
-            let pathh = path.join(path.join(__dirname, "../../"));
-            const files = fs.readdirSync(pathh);
-
-            for(const file of files) {
-                console.log(file);
-            }    
 
             var rootDir = path.join(__dirname, "../../");
             const fishPath = path.join(rootDir, `assets/fishes/${fishNameFormatted.toLowerCase()}`);
