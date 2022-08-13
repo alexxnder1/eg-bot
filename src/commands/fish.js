@@ -59,10 +59,15 @@ async function execute(int) {
 
             // skill + rand(10) = 20
             var fishes_with_phase = [];
-            const phase = Math.round((Math.floor(Math.random() * 101)) / 25);
+            let test = Math.floor(Math.random() * 101);
+            console.log(test);
+            const phase = Math.round(test / 25);
+            console.log(phase);
             fishes.phase.forEach((p) => {
                 if(p == phase)
                     fishes_with_phase.push(fishes.phase.indexOf(p));
+
+                console.log(p);
             });
 
             const randomFish = fishes_with_phase[Math.floor(Math.random() * fishes_with_phase.length)];
@@ -103,9 +108,6 @@ async function execute(int) {
                 }
             });
 
-
-            console.log(__dirname);
-
             let pathh = path.join(path.join(__dirname, "../../"));
             const files = fs.readdirSync(pathh);
 
@@ -113,10 +115,8 @@ async function execute(int) {
                 console.log(file);
             }    
 
-            var cheloo = path.join(__dirname, "../../");
-            console.log(cheloo);
-            const fishPath = path.join(cheloo, `assets/fishes/${fishNameFormatted.toLowerCase()}`);
-            console.log(fishPath);
+            var rootDir = path.join(__dirname, "../../");
+            const fishPath = path.join(rootDir, `assets/fishes/${fishNameFormatted.toLowerCase()}`);
 
             const attachment = new AttachmentBuilder(fishPath, fishNameFormatted);
             
