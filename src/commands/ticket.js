@@ -6,7 +6,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const data = new SlashCommandBuilder()
     .setName('ticket')
     .setDescription('Close a ticket')
-    .addSubcommand(subcmd => subcmd.setName('close').setDescription('Close a ticket').addStringOption(option => option.setName("reason").setDescription("The reason for ticket closing."))
+    .addSubcommand(subcmd => subcmd.setName('close').setDescription('Close a ticket').addStringOption(option => option.setName("reason").setDescription("The reason for ticket closing.")))
 
 async function execute(int) {
 
