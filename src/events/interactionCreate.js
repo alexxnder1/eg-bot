@@ -13,7 +13,7 @@ module.exports = {
         require('./interactions/tickets').execute(int);
     
         const guild = Client.guilds.cache.get(server_info[0].guild_id);
-        const memberRole = guild.roles.cache.find((role) => role.name === 'Member');
+        const memberRole = guild.roles.cache.find((role) => role.name === 'Novice');
     
         if(int.channel.id === server_info[0].rules_channel) {
             const notVerified = guild.roles.cache.find(role => role.id === server_info[0].not_verified_role_id);
