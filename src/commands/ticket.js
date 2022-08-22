@@ -1,7 +1,7 @@
 const ticketModel = require('../db/schemas/ticketSchema');
 const server_info = require('../db/loadServerInfo');
 
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 const data = new SlashCommandBuilder()
     .setName('ticket')
@@ -10,7 +10,7 @@ const data = new SlashCommandBuilder()
 
 async function execute(int) {
 
-    if(!int.member.roles.cache.some(role => role.name === 'Helper'))
+    if(!int.member.permissions.has(PermissionFlagsBits.ModerateMembers))
      return int.reply("You don't have the necessary administrator level to use this command.");
 
      var channel = int.guild.channels.cache.find(channel => channel.id === int.channel.id);
