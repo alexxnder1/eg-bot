@@ -20,7 +20,7 @@ async function execute(int) {
      if(channel.locked)
          return int.reply({ content: "This ticket is already closed.", ephemeral: true});
     
-     let _reason = arg[1].split('tclose')[1];
+     let _reason = int.options.getString("reason");
 
      if(_reason == undefined || _reason.length < 3)
         return int.reply({ content: "Please provide a good reason.", ephemeral: true});
