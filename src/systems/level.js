@@ -52,9 +52,12 @@ module.exports = {
         }
                
         model.findOne({ discord_id: message.author.id }, (err, res) => {
-            console.log(res);
             if(err)
                 return console.log(err);
+
+            if(!res)
+              return false;
+
 
             const exp = Math.floor(Math.random() * 150) * (res.level / 2);
             const money = Math.floor(Math.random() * 525 * res.level);
