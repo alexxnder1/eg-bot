@@ -52,6 +52,7 @@ module.exports = {
         }
                
         model.findOne({ discord_id: message.author.id }, (err, res) => {
+            console.log(res);
             if(err)
                 return console.log(err);
 
